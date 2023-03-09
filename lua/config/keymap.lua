@@ -139,7 +139,8 @@ key("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 key("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- File Tree Pawn
-key('n', '<C-b>', ':NvimTreeToggle<CR>', opts) -- This works completely fine
+key('n', '<C-S-b>', function() require("neo-tree.command").execute { toggle = true, dir = require("utils").get_root() } end, opts)
+key('n', '<C-b>', function() require("neo-tree.command").execute { toggle = true, dir = vim.loop.cwd() } end, opts)
 
 -- For Conceal enable/disable
 vim.key.set("n", "<F10>", function()

@@ -1,3 +1,4 @@
+---@diagnostic disable: deprecated
 local TERMINAL     = require("toggleterm.terminal").Terminal
 local API_KEY_PATH = require("config.user").openai_api_path
 local CMP          = require("config.user").completion
@@ -39,7 +40,7 @@ function Utils.get_root()
     if not root then
         path = path and vim.fs.dirname(path) or vim.loop.cwd()
         ---@type string?
-        root = vim.fs.find(M.root_patterns, {
+        root = vim.fs.find({ ".git", "lua" }, {
                 path = path,
                 upward = true
             })[1]

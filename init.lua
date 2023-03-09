@@ -1,7 +1,7 @@
 for _, source in ipairs({
+    "config.option",
     "config.autocmd",
     "config.keymap",
-    "config.option",
     "config.lazy",
 
 }) do
@@ -11,3 +11,6 @@ for _, source in ipairs({
         -- notify(err, "error", { title = "Require Error" })
     end
 end
+
+-- TEMP
+-- vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
