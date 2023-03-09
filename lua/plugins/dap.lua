@@ -1,6 +1,6 @@
 local Dap = {
     "mfussenegger/nvim-dap",
-    enabled = plugin_enabled.nvim_dap,
+    enabled = vim.g.plugin_enabled.nvim_dap,
     dependencies = {
         { "rcarriga/nvim-dap-ui" },
         { "theHamsta/nvim-dap-virtual-text" },

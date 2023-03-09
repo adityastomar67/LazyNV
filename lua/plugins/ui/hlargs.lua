@@ -1,6 +1,6 @@
 return {
     "m-demare/hlargs.nvim",
-    enabled = plugin_enabled.hlargs,
+    enabled = vim.g.plugin_enabled.hlargs,
     event = "VeryLazy",
     opts = {
         color = "#ef9062",

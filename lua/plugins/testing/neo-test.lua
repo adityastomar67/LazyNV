@@ -1,6 +1,6 @@
 return {
     "nvim-neotest/neotest",
-    enabled = plugin_enabled.neotest,
+    enabled = vim.g.plugin_enabled.neotest,
     keys = {
         {
             "<leader>tNF",

@@ -1,7 +1,7 @@
 return {
     {
         "folke/tokyonight.nvim",
-        enabled = plugin_enabled.colorscheme.tokyonight,
+        enabled = vim.g.plugin_enabled.colorscheme.tokyonight,
         lazy = false,
         priority = 1000,
         config = function()
@@ -12,13 +12,13 @@ return {
     },
     {
         "catppuccin/nvim",
-        enabled = plugin_enabled.colorscheme.catppuccin,
+        enabled = vim.g.plugin_enabled.colorscheme.catppuccin,
         lazy = false,
         name = "catppuccin",
     },
     {
         "ellisonleao/gruvbox.nvim",
-        enabled = plugin_enabled.colorscheme.gruvbox,
+        enabled = vim.g.plugin_enabled.colorscheme.gruvbox,
         lazy = false,
         config = function()
             require("gruvbox").setup()
@@ -26,7 +26,7 @@ return {
     },
     {
         "sainnhe/sonokai",
-        enabled = plugin_enabled.colorscheme.sonokai,
+        enabled = vim.g.plugin_enabled.colorscheme.sonokai,
         lazy = false,
         opts = {
             sonokai_style = 'default', --'atlantis', 'andromeda', 'shusia', 'maia', 'espresso'
@@ -37,7 +37,7 @@ return {
     },
     {
         "sainnhe/everforest",
-        enabled = plugin_enabled.colorscheme.everforest,
+        enabled = vim.g.plugin_enabled.colorscheme.everforest,
         lazy = false,
         config = function()
             require("everforest").setup()
@@ -45,7 +45,7 @@ return {
     },
     {
         "sainnhe/edge",
-        enabled = plugin_enabled.colorscheme.edge,
+        enabled = vim.g.plugin_enabled.colorscheme.edge,
         lazy = false,
         config = function()
             require("edge").setup()
@@ -53,7 +53,7 @@ return {
     },
     {
         "navarasu/onedark.nvim",
-        enabled = plugin_enabled.colorscheme.onedark,
+        enabled = vim.g.plugin_enabled.colorscheme.onedark,
         lazy = false,
         opts = { style = 'darker' },
         config = function(_, opts)

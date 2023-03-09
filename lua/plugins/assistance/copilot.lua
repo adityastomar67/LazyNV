@@ -1,6 +1,6 @@
 return {
     "zbirenbaum/copilot.lua",
-    enabled = plugin_enabled.copilot,
+    enabled = vim.g.plugin_enabled.copilot,
     cmd = "Copilot",
     event = "InsertEnter",
     opts = {

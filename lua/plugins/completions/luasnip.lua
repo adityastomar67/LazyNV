@@ -1,6 +1,6 @@
 return {
     "L3MON4D3/LuaSnip",
-    enabled = plugin_enabled.LuaSnip,
+    enabled = vim.g.plugin_enabled.LuaSnip,
     dependencies = {
         -- {
         --     "adityastomar67/LuaSnip-snippets",

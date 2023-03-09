@@ -1,6 +1,6 @@
 return {
     "vim-test/vim-test",
-    enabled = plugin_enabled.vim_test,
+    enabled = vim.g.plugin_enabled.vim_test,
     keys = {
       { "<leader>tc", "<cmd>TestClass<cr>",   desc = "Class" },
       { "<leader>tf", "<cmd>TestFile<cr>",    desc = "File" },

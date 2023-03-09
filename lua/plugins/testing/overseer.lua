@@ -1,6 +1,6 @@
 return {
     "stevearc/overseer.nvim",
-    enabled = plugin_enabled.overseer,
+    enabled = vim.g.plugin_enabled.overseer,
     keys = {
         { "<leader>toR", "<cmd>OverseerRunCmd<cr>",       desc = "Run Command" },
         { "<leader>toa", "<cmd>OverseerTaskAction<cr>",   desc = "Task Action" },

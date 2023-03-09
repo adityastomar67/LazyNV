@@ -1,7 +1,7 @@
 return {
     {
         "echasnovski/mini.map",
-        enabled = plugin_enabled.mini.map,
+        enabled = vim.g.plugin_enabled.mini.map,
         opts = {},
         keys = {
             --stylua: ignore
@@ -13,7 +13,7 @@ return {
     },
     {
         "echasnovski/mini.move",
-        enabled = plugin_enabled.mini.move,
+        enabled = vim.g.plugin_enabled.mini.move,
         opts = {},
         keys = { "<<M-h>", "<M-l>", "<M-j>", "<M-k>" },
         config = function(_, opts)
@@ -22,7 +22,7 @@ return {
     },
     {
         "echasnovski/mini.ai",
-        enabled = plugin_enabled.mini.ai,
+        enabled = vim.g.plugin_enabled.mini.ai,
         keys = {
             { "a", mode = { "x", "o" } },
             { "i", mode = { "x", "o" } },
@@ -57,7 +57,7 @@ return {
     },
     {
         "echasnovski/mini.bufremove",
-        enabled = plugin_enabled.mini.bufremove,
+        enabled = vim.g.plugin_enabled.mini.bufremove,
         -- stylua: ignore
         keys = {
             { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
@@ -66,7 +66,7 @@ return {
     },
     {
         "echasnovski/mini.animate",
-        enabled = plugin_enabled.mini.animate,
+        enabled = vim.g.plugin_enabled.mini.animate,
         event = "VeryLazy",
         config = function(_, _)
             require("mini.animate").setup()
@@ -74,7 +74,7 @@ return {
     },
     {
       "echasnovski/mini.comment",
-    enabled = plugin_enabled.mini.comment,
+    enabled = vim.g.plugin_enabled.mini.comment,
       event = "VeryLazy",
       opts = {
         hooks = {

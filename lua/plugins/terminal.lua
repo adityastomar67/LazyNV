@@ -1,6 +1,6 @@
 return {
     "akinsho/toggleterm.nvim",
-    enabled = plugin_enabled.toggleterm,
+    enabled = vim.g.plugin_enabled.toggleterm,
     cmd = { "ToggleTerm", "TermExec" },
     opts = {
         size            = 13,

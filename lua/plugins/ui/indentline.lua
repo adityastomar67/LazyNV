@@ -1,13 +1,13 @@
 return {
     {
         "lukas-reineke/indent-blankline.nvim",
-        enabled = plugin_enabled.indent_blankline,
+        enabled = vim.g.plugin_enabled.indent_blankline,
         event = "BufReadPre",
         config = true
     },
     {
         "echasnovski/mini.indentscope",
-        enabled = plugin_enabled.indentscope,
+        enabled = vim.g.plugin_enabled.indentscope,
         version = false, -- wait till new 0.7.0 release to put it back on semver
         event = { "BufReadPre", "BufNewFile" },
         opts = {

@@ -2,7 +2,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    enabled = plugin_enabled.lualine,
+    enabled = vim.g.plugin_enabled.lualine,
     config = function()
       local components = require "plugins.extras.ui.statusline.components"
 
@@ -52,7 +52,7 @@ return {
   },
   {
     "tamton-aquib/staline.nvim",
-    enabled = plugin_enabled.staline,
+    enabled = vim.g.plugin_enabled.staline,
     event = "VeryLazy",
     opts = {
       defaults = {

@@ -1,6 +1,6 @@
 return {
   "abecodes/tabout.nvim",
-  enabled = plugin_enabled.tabout,
+  enabled = vim.g.plugin_enabled.tabout,
   event = "VeryLazy",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",

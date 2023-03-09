@@ -11,7 +11,7 @@ local logo = {
 
 return {
     "goolord/alpha-nvim",
-    enabled = plugin_enabled.alpha_nvim,
+    enabled = vim.g.plugin_enabled.alpha_nvim,
     event = "VimEnter",
     config = function()
         local dashboard = require "alpha.themes.dashboard"

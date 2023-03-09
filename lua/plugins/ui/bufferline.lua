@@ -1,6 +1,6 @@
 return {
     "akinsho/nvim-bufferline.lua",
-    enabled = plugin_enabled.bufferline,
+    enabled = vim.g.plugin_enabled.bufferline,
     event = "VeryLazy",
     opts = {
         options = {

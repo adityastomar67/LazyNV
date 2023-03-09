@@ -1,7 +1,7 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
-        enabled = plugin_enabled.telescope,
+        enabled = vim.g.plugin_enabled.telescope,
         dependencies = {
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
             "nvim-telescope/telescope-file-browser.nvim",
@@ -205,10 +205,10 @@ return {
     },
 
 
-    { "stevearc/aerial.nvim", enabled = plugin_enabled.aerial, config = true },
+    { "stevearc/aerial.nvim", enabled = vim.g.plugin_enabled.aerial, config = true },
     {
         "ahmedkhalf/project.nvim",
-        enabled = plugin_enabled.project,
+        enabled = vim.g.plugin_enabled.project,
         config = function()
             require("project_nvim").setup {
                 detection_methods = { "pattern", "lsp" },

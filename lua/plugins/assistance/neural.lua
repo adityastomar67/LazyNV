@@ -1,6 +1,6 @@
 return {
     "dense-analysis/neural",
-    enabled = plugin_enabled.neural,
+    enabled = vim.g.plugin_enabled.neural,
     event = "VeryLazy",
     config = function()
         local api = require("utils").get_api_key()

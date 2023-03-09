@@ -1,6 +1,6 @@
 return { {
     "ggandor/flit.nvim",
-    enabled = plugin_enabled.flit,
+    enabled = vim.g.plugin_enabled.flit,
     keys = function()
         local ret = {}
         for _, key in ipairs({ "f", "F", "t", "T" }) do
@@ -12,7 +12,7 @@ return { {
 },
     {
         "ggandor/leap.nvim",
-        enabled = plugin_enabled.leap,
+        enabled = vim.g.plugin_enabled.leap,
         keys = {
             { "s",  mode = { "n", "x", "o" }, desc = "Leap forward to" },
             { "S",  mode = { "n", "x", "o" }, desc = "Leap backward to" },

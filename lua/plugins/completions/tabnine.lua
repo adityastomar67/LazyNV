@@ -1,6 +1,6 @@
 return {
     "tzachar/cmp-tabnine",
-    enabled = plugin_enabled.cmp_tabnine,
+    enabled = vim.g.plugin_enabled.cmp_tabnine,
     build = "./install.sh",
     opts = {
         max_lines                = 1000,

@@ -1,6 +1,6 @@
 return {
     "folke/styler.nvim",
-    enabled = plugin_enabled.styler,
+    enabled = vim.g.plugin_enabled.styler,
     event = "VeryLazy",
     config = function()
         require("styler").setup {

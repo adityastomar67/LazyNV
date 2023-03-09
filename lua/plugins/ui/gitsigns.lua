@@ -1,6 +1,6 @@
 return {
     "lewis6991/gitsigns.nvim",
-    enabled = plugin_enabled.gitsigns,
+    enabled = vim.g.plugin_enabled.gitsigns,
     event = { "BufReadPre", "BufNewFile" },
     opts = {
         signs = {

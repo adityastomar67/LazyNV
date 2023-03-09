@@ -1,6 +1,6 @@
 return {
     "sudormrfbin/cheatsheet.nvim",
-    enabled = plugin_enabled.cheatsheet,
+    enabled = vim.g.plugin_enabled.cheatsheet,
     event = "VeryLazy",
     opts = {
         bundled_cheatsheets = true,

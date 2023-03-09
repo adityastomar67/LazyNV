@@ -1,6 +1,6 @@
 return {
     "hrsh7th/nvim-cmp",
-    enabled = plugin_enabled.nvim_cmp,
+    enabled = vim.g.plugin_enabled.nvim_cmp,
     event = "InsertEnter",
     dependencies = {
         "saadparwaiz1/cmp_luasnip",

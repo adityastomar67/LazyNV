@@ -1,6 +1,6 @@
 return {
     "danymat/neogen",
-    enabled = plugin_enabled.neogen,
+    enabled = vim.g.plugin_enabled.neogen,
     opts = {
         snippet_engine = "luasnip",
         enabled = true,

@@ -1,7 +1,7 @@
 return {
     {
         "dstein64/vim-startuptime",
-        enabled = plugin_enabled.vim_startuptime,
+        enabled = vim.g.plugin_enabled.vim_startuptime,
         cmd = "StartupTime",
         config = function()
             vim.g.startuptime_tries = 10
@@ -9,7 +9,7 @@ return {
     },
     {
         "folke/persistence.nvim",
-        enabled = plugin_enabled.persistence,
+        enabled = vim.g.plugin_enabled.persistence,
         event = "BufReadPre",
         opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals" } },
         -- stylua: ignore
@@ -21,5 +21,5 @@ return {
     },
     { "nvim-lua/plenary.nvim", lazy = true },
     { "kg8m/vim-simple-align", event = "VeryLazy" },
-    { "tpope/vim-surround",    enabled = plugin_enabled.vim_surround, event = "BufReadPre" },
+    { "tpope/vim-surround",    enabled = vim.g.plugin_enabled.vim_surround, event = "BufReadPre" },
 }

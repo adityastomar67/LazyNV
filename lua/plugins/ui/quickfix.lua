@@ -47,7 +47,7 @@ vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
 
 return {
     "kevinhwang91/nvim-bqf",
-    enabled = plugin_enabled.nvim_bqf,
+    enabled = vim.g.plugin_enabled.nvim_bqf,
     event = "VeryLazy",
     opts = {
         filter = {

@@ -1,7 +1,7 @@
 return {
     {
         "windwp/nvim-spectre",
-        enabled = plugin_enabled.nvim_spectre,
+        enabled = vim.g.plugin_enabled.nvim_spectre,
         event = "VeryLazy",
         keys = {
             {
@@ -13,7 +13,7 @@ return {
     },
     {
         "kevinhwang91/nvim-hlslens",
-        enabled = plugin_enabled.hlslens,
+        enabled = vim.g.plugin_enabled.hlslens,
         event = "VeryLazy",
         keys = {
             {

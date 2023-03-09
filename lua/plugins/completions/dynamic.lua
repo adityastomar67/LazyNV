@@ -1,6 +1,6 @@
 return {
     "uga-rosa/cmp-dynamic",
-    enabled = plugin_enabled.cmp_dynamic,
+    enabled = vim.g.plugin_enabled.cmp_dynamic,
     event = "VeryLazy",
     opts = function()
         local Date = require "cmp_dynamic.utils.date"

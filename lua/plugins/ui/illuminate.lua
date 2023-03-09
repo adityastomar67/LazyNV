@@ -1,5 +1,6 @@
 return {
     "RRethy/vim-illuminate",
+    enabled = vim.g.plugin_enabled.illuminate,
     event = { "BufReadPost", "BufNewFile" },
     opts = { delay = 200 },
     config = function(_, opts)

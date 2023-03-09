@@ -1,6 +1,6 @@
 return {
     "folke/todo-comments.nvim",
-    enabled = plugin_enabled.todo_comments,
+    enabled = vim.g.plugin_enabled.todo_comments,
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = "BufReadPost",
     keys = {

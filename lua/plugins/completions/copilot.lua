@@ -1,6 +1,6 @@
 return {
     "zbirenbaum/copilot-cmp",
-    enabled = plugin_enabled.cmp_copilot,
+    enabled = vim.g.plugin_enabled.cmp_copilot,
     dependencies = { "copilot.lua" },
     opts  = {
         suggestion = { enabled = false },

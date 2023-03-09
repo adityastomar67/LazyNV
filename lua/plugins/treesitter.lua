@@ -16,7 +16,7 @@ local swap_next, swap_prev = (function()
 
 return {
     "nvim-treesitter/nvim-treesitter",
-    enabled = plugin_enabled.treesitter,
+    enabled = vim.g.plugin_enabled.treesitter,
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "JoosepAlviste/nvim-ts-context-commentstring",
