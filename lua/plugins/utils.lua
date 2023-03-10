@@ -19,8 +19,12 @@ return {
         keys = {
             { "<leader>qs", function() require("persistence").load() end,                desc = "Restore Session" },
             { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-            { "<leader>qd", function() require("persistence").stop() end,                desc =
-            "Don't Save Current Session" },
+            {
+                "<leader>qd",
+                function() require("persistence").stop() end,
+                desc =
+                "Don't Save Current Session"
+            },
         },
     },
     {
@@ -31,9 +35,11 @@ return {
             require("inc_rename").setup()
         end,
     },
-    { "nvim-lua/plenary.nvim", lazy = true },
-    { "kg8m/vim-simple-align", event = "VeryLazy" },
-    { "tpope/vim-repeat",      event = "VeryLazy" },
+    { "nvim-lua/plenary.nvim",     lazy = true },
+    { "kg8m/vim-simple-align",     event = "VeryLazy" },
+    { "tpope/vim-repeat",          event = "VeryLazy" },
+    { "sindrets/winshift.nvim",    event = "Verylazy" },
+    { "s1n7ax/nvim-window-picker", event = "Verylazy" },
     {
         "tpope/vim-surround",
         enabled = vim.g.plugin_enabled.vim_surround,
