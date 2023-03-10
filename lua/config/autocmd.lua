@@ -32,7 +32,7 @@ CMD [[
 	  endfunction
 	  command! -nargs=0 Syn call Syn()
 ]]
--- CMD [[command! -bar -nargs=1 Grep silent grep <q-args> | redraw! | cw]] 
+-- CMD [[command! -bar -nargs=1 Grep silent grep <q-args> | redraw! | cw]]
 
 -- Abbreviations
 CMD [[cnoreab cls Cls]]
@@ -166,8 +166,7 @@ API.nvim_create_autocmd({ 'FileType' }, {
 API.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
 
 -- AutoCmds
-CMD [[autocmd InsertEnter * norm zz]]                           -- Vertically center document when entering insert mode
-CMD [[autocmd BufWritePre * silent! lua vim.lsp.buf.formatting_sync()]] -- Auto formatting every file before save
+CMD [[autocmd InsertEnter * norm zz]] -- Vertically center document when entering insert mode
 CMD [[autocmd BufNewFile,BufRead *.ejs set filetype=html]]
 
 local autocmds = {
@@ -194,7 +193,7 @@ local autocmds = {
     custom_updates = {
         { "BufWritePost", ".Xresources", "!xrdb -merge ~/.Xresources" },
         { "BufWritePost", ".Xdefaults",  "!xrdb -merge ~/.Xdefaults" },
-        { "BufWritePost", "fonts.conf",    "!fc-cache" }
+        { "BufWritePost", "fonts.conf",  "!fc-cache" }
     },
     resize_windows_proportionally = { { "VimResized", "*", ":wincmd =" }, { "Filetype", "help", ":wincmd =" } },
     terminal_job = {

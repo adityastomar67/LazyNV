@@ -128,7 +128,7 @@ if vim.fn.has "nvim-0.9.0" == 1 then
 end
 
 -- Remap space as leader key
-vim.api.nvim_set_keymap({ "n", "v" }, "<Space>", "<Nop>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
 G.mapleader = " "
 G.maplocalleader = " "
 
