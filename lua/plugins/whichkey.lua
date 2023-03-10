@@ -4,7 +4,7 @@ return {
     dependencies = {
         "mrjones2014/legendary.nvim",
     },
-    event = "VeryLazy",
+    event = "BufEnter",
     config = function()
         local wk = require "which-key"
         wk.setup {

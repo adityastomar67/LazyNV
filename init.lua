@@ -1,7 +1,7 @@
 vim.g.plugin_enabled = require("config.user").plugins
 for _, source in ipairs({
-    "config.option",
     "config.lazy",
+    "config.option",
 }) do
     local status_ok, fault = pcall(require, source)
     if not status_ok then
@@ -17,9 +17,3 @@ vim.api.nvim_create_autocmd("User", {
         require "config.keymap"
     end,
 })
-
--- TEMP
--- vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
-
--- Setting the colorscheme
-vim.cmd [[lua require("utils").set_colorscheme()]]

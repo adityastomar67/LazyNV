@@ -179,7 +179,8 @@ for _, provider in ipairs(default_providers) do
     vim.g["loaded_" .. provider .. "_provider"] = 0
 end
 
-
+-- Setting the colorscheme
+require("utils").set_colorscheme()
 
 -- Data for limelight_conceal
 vim.cmd [[let g:limelight_conceal_ctermfg = 'gray']]
