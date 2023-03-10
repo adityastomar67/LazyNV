@@ -1,7 +1,7 @@
 return {
     "bennypowers/nvim-regexplainer",
     enabled = vim.g.plugin_enabled.regexplainer,
-    event = "veryLazy",
+    event = "VeryLazy",
     dependencies = {
         'nvim-treesitter/nvim-treesitter',
         'MunifTanjim/nui.nvim',
