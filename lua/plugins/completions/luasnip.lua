@@ -75,7 +75,7 @@ return {
     config = function(_, opts)
         require("luasnip").setup(opts)
 
-        local snippets_folder = vim.fn.stdpath "config" .. "/lua/plugins/completion/snippets/"
+        local snippets_folder = vim.fn.stdpath "config" .. "/lua/plugins/completions/snippets/"
         require("luasnip.loaders.from_lua").lazy_load {
             paths = snippets_folder,
         }

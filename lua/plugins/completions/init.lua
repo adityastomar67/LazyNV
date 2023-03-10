@@ -13,7 +13,6 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-vsnip",
-        "hrsh7th/cmp-copilot",
         "uga-rosa/cmp-dynamic",
         "notomo/cmp-neosnippet",
         "alpha2phi/cmp-openai-codex",

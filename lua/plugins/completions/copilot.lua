@@ -2,7 +2,8 @@ return {
     "zbirenbaum/copilot-cmp",
     enabled = vim.g.plugin_enabled.cmp_copilot,
     dependencies = { "copilot.lua" },
-    opts  = {
+    config = function()
+        require("copilot_cmp").setup({
         suggestion = { enabled = false },
         panel      = { enabled = false },
         formatters = {
@@ -10,9 +11,6 @@ return {
             insert_text = require("copilot_cmp.format").remove_existing,
             preview     = require("copilot_cmp.format").deindent,
         },
-    },
-    config = function(_, opts)
-        local copilot = require("copilot_cmp")
-        copilot.setup(opts)
+    })
     end,
 }
