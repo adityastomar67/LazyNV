@@ -6,7 +6,6 @@ return {
         "nvim-telescope/telescope-file-browser.nvim",
         "nvim-telescope/telescope-media-files.nvim",
         "nvim-telescope/telescope-ui-select.nvim",
-        "nvim-telescope/telescope-dap.nvim",
         "xiyaowong/telescope-emoji.nvim",
         "nvim-telescope/telescope-project.nvim",
         "cljoly/telescope-repo.nvim",
@@ -207,7 +206,6 @@ return {
         telescope.load_extension("file_browser")
         telescope.load_extension("project")
         telescope.load_extension("aerial")
-        telescope.load_extension("dap")
         telescope.load_extension("frecency")
     end
 }
