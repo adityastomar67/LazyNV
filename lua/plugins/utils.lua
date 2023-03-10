@@ -30,7 +30,7 @@ return {
     { "nvim-lua/plenary.nvim",     lazy = true },
     { "kg8m/vim-simple-align",     event = "VeryLazy" },
     { "tpope/vim-repeat",          event = "VeryLazy" },
-    { "sindrets/winshift.nvim",    event = "Verylazy" },
+    { "sindrets/winshift.nvim",    event = "Verylazy", config = true },
     { "s1n7ax/nvim-window-picker", event = "Verylazy" },
     { "junegunn/limelight.vim",    event = "VeryLazy" },
     {

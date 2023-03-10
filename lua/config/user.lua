@@ -107,6 +107,7 @@ User.ensure_installed_languages = {
     "vim",
     "yaml",
     "sql",
+    "regex",
 }
 
 return User
