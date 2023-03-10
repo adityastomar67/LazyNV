@@ -26,6 +26,7 @@ return {
     {
         "smjonas/inc-rename.nvim",
         enabled = vim.g.plugin_enabled.inc_rename,
+        event = "VeryLazy",
         config = function()
             require("inc_rename").setup()
         end,
