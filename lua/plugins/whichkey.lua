@@ -13,8 +13,6 @@ return {
             key_labels = { ["<leader>"] = "SPC" },
             triggers = "auto",
         }
-        --   wk.register({mode = {"v"},
-        -- }, { prefix = "<leader>" })
         wk.register({
             mode = { "n" },
             a = {
@@ -56,7 +54,7 @@ return {
 
         wk.register({
             mode = { "n", "v" },
-            I = { '<cmd>lua require("utils.toggle").toggle()<CR>', "Toggle Inverse" },
+            I = { '<cmd>lua require("utils.toggler").toggle()<CR>', "Toggle Inverse" },
             S = {
                 name = "Text",
                 a = { ":SimpleAlign ", "Align Text" },
