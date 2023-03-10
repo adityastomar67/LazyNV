@@ -17,7 +17,9 @@ return {
     keys = {
         {
             "<leader><space>",
-            require("utils.telescope").find_files,
+            function()
+                require("utils.telescope").find_files()
+            end,
             desc = "Find Files"
         },
         {
@@ -25,11 +27,17 @@ return {
             "<cmd>Telescope frecency theme=dropdown previewer=false<cr>",
             desc = "Recent"
         },
-        { "<leader>ff", require("utils.telescope").find_files, desc = "Find Files" },
-        { "<leader>fb", "<cmd>Telescope buffers<cr>",          desc = "Buffers" },
-        { "<leader>fr", "<cmd>Telescope file_browser<cr>",     desc = "Browser" },
-        { "<leader>ps", "<cmd>Telescope repo list<cr>",        desc = "Search" },
-        { "<leader>hs", "<cmd>Telescope help_tags<cr>",        desc = "Search" },
+        {
+            "<leader>ff",
+            function()
+                require("utils.telescope").find_files()
+            end,
+            desc = "Find Files"
+        },
+        { "<leader>fb", "<cmd>Telescope buffers<cr>",      desc = "Buffers" },
+        { "<leader>fr", "<cmd>Telescope file_browser<cr>", desc = "Browser" },
+        { "<leader>ps", "<cmd>Telescope repo list<cr>",    desc = "Search" },
+        { "<leader>hs", "<cmd>Telescope help_tags<cr>",    desc = "Search" },
         {
             "<leader>pp",
             function()
@@ -82,7 +90,7 @@ return {
                 ["<C-q>"]      = actions.send_to_qflist + actions.open_qflist,
                 ["<M-q>"]      = actions.send_selected_to_qflist + actions.open_qflist,
                 ["<C-l>"]      = actions.complete_tag,
-                ["<C-_>"]      = actions.which_key,     -- keys from pressing <C-/>
+                ["<C-_>"]      = actions.which_key, -- keys from pressing <C-/>
             },
             n = {
                 ["q"]          = actions.close,
@@ -166,7 +174,7 @@ return {
                 border                 = {},
                 borderchars            = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
                 color_devicons         = true,
-                set_env                = { ["COLORTERM"] = "truecolor" },     -- default = nil,
+                set_env                = { ["COLORTERM"] = "truecolor" }, -- default = nil,
                 file_previewer         = require("telescope.previewers").vim_buffer_cat.new,
                 grep_previewer         = require("telescope.previewers").vim_buffer_vimgrep.new,
                 qflist_previewer       = require("telescope.previewers").vim_buffer_qflist.new,

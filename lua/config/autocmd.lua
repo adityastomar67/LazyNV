@@ -167,7 +167,7 @@ API.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
 
 -- AutoCmds
 CMD [[autocmd InsertEnter * norm zz]]                           -- Vertically center document when entering insert mode
-CMD [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]] -- Auto formatting every file before save
+CMD [[autocmd BufWritePre * lua vim.lsp.buf.formatting_snc()]] -- Auto formatting every file before save
 CMD [[autocmd BufNewFile,BufRead *.ejs set filetype=html]]
 
 local autocmds = {

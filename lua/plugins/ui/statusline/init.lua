@@ -4,7 +4,7 @@ return {
     event = "VeryLazy",
     enabled = vim.g.plugin_enabled.lualine,
     config = function()
-      local components = require "plugins.extras.ui.statusline.components"
+      local components = require "plugins.ui.statusline.components"
 
       require("lualine").setup {
         options = {
