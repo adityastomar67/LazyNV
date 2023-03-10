@@ -1,6 +1,7 @@
 return {
     "adityastomar67/italicize",
     enabled = vim.g.plugin_enabled.italicize,
+    event = "BufEnter",
     opts = {
         transparency       = true,
         italics            = true,
