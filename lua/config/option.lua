@@ -180,11 +180,11 @@ for _, provider in ipairs(default_providers) do
 end
 
 -- Setting the colorscheme
-require("utils").set_colorscheme()
+vim.cmd [[lua require("utils").set_colorscheme()]]
 
 -- Data for limelight_conceal
-vim.cmd("let g:limelight_conceal_ctermfg = 'gray'")
-vim.cmd("let g:limelight_conceal_ctermfg = 240")
-vim.cmd("let g:limelight_conceal_guifg = 'DarkGray'")
-vim.cmd("let g:limelight_conceal_guifg = '#777777'")
-vim.cmd("let g:limelight_default_coefficient = 0.9")
+vim.cmd [[let g:limelight_conceal_ctermfg = 'gray']]
+vim.cmd [[let g:limelight_conceal_ctermfg = 240]]
+vim.cmd [[let g:limelight_conceal_guifg = 'DarkGray']]
+vim.cmd [[let g:limelight_conceal_guifg = '#777777']]
+vim.cmd [[let g:limelight_default_coefficient = 0.9]]
