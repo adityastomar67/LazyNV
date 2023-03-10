@@ -55,6 +55,7 @@ User.plugins                    = {
     cmp_copilot      = true,
     cmp_dynamic      = true,
     cmp_tabnine      = true,
+    inc_rename       = true,
     telescope        = true,
     project          = false,
     hydra            = false,
