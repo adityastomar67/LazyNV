@@ -132,13 +132,13 @@ key("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 key("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- File Tree Pawn
-vim.key.set('n', '<C-S-b>', function()
+vim.keymap.set('n', '<C-S-b>', function()
     require("neo-tree.command").execute {
         toggle = true,
         dir = require("utils").get_root()
     }
 end, opts)
-vim.key.set('n', '<C-b>', function()
+vim.keymap.set('n', '<C-b>', function()
     require("neo-tree.command").execute {
         toggle = true,
         dir = vim.loop.cwd()
@@ -146,7 +146,7 @@ vim.key.set('n', '<C-b>', function()
 end, opts)
 
 -- For Conceal enable/disable
-vim.key.set("n", "<F10>", function()
+vim.keymap.set("n", "<F10>", function()
     if vim.o.conceallevel > 0 then
         vim.o.conceallevel = 0
     else
@@ -154,7 +154,7 @@ vim.key.set("n", "<F10>", function()
     end
 end, opts)
 
-vim.key.set("n", "<F11>", function()
+vim.keymap.set("n", "<F11>", function()
     if vim.o.concealcursor == "n" then
         vim.o.concealcursor = ""
     else
