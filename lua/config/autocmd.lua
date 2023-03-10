@@ -23,6 +23,7 @@ CMD [[command! Cls lua require("core.utils").preserve('%s/\\s\\+$//ge')]]
 CMD [[command! BufOnly lua require('core.utils').preserve("silent! %bd|e#|bd#")]]
 CMD [[command! CloneBuffer new | 0put =getbufline('#',1,'$')]]
 CMD [[command! Scratch new | setlocal bt=nofile bh=wipe nobl noswapfile nu]]
+CMD [[command! Blockwise lua require('utils').blockwise_clipboard()]]
 CMD [[
 	function! Syn()
 		for id in synstack(line("."), col("."))
@@ -31,8 +32,19 @@ CMD [[
 	  endfunction
 	  command! -nargs=0 Syn call Syn()
 ]]
--- CMD [[command! Blockwise lua require('core.utils').blockwise_clipboard()]] 
 -- CMD [[command! -bar -nargs=1 Grep silent grep <q-args> | redraw! | cw]] 
+
+-- Abbreviations
+CMD [[cnoreab cls Cls]]
+CMD [[cnoreab Bo BufOnly]]
+CMD [[cnoreab W w]]
+CMD [[cnoreab W! w!]]
+CMD [[cnoreab Bw Blockwise]]
+CMD [[inoreab Fname <c-r>=expand("%:p")<cr>]]
+CMD [[inoreab Iname <c-r>=expand("%:p")<cr>]]
+CMD [[inoreab fname <c-r>=expand("%:t")<cr>]]
+CMD [[inoreab iname <c-r>=expand("%:t")<cr>]]
+CMD [[inoreabbrev idate <C-R>=strftime("%b %d %Y %H:%M")<CR>]]
 
 -- Turn Syntax off for non-code files
 local syntax_group = API.nvim_create_augroup("syntaxapply", { clear = true })
@@ -205,31 +217,14 @@ local autocmds = {
         { "CursorMoved", "*",
             [[exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""]] },
     },
-    -- autoskel = {
-    -- {"BufNewFile", "*.lua,*.sh", 'lua API.nvim_feedkeys(API.nvim_replace_termcodes("i_skel<CR>",true,false,true),"m",true)' },
-    -- },
-    -- wrap_spell = {
-    --     { "FileType", "markdown", ":setlocal wrap" },
-    --     { "FileType", "markdown", ":setlocal spell" },
-    -- },
-    -- auto_exit_insertmode = {
-    --     { "CursorHoldI", "*", "stopinsert" },
-    -- },
-    -- auto_working_directory = {
-    --     { "BufEnter", "*", "silent! lcd %:p:h" },
-    -- },
-    -- ansi_esc_log = {
-    --     { "BufEnter", "*.log", ":AnsiEsc" };
-    -- };
+    wrap_spell_markdown = {
+        { "FileType", "markdown", ":setlocal wrap" },
+        { "FileType", "markdown", ":setlocal spell" },
+    },
+    auto_working_directory = { { "BufEnter", "*", "silent! lcd %:p:h" } },
     -- AutoRecoverSwapFile = {
     --     { "SwapExists", "*", [[let v:swapchoice = 'r' | let b:swapname = v:swapname]] },
     --     { "BufWinEnter", "*", [[if exists("b:swapname") | call delete(b:swapname) | endif]] },
-    -- },
-    -- flash_cursor_line = {
-    --     { "WinEnter", "*", "lua require('core.utils').flash_cursorline()" },
-    --     -- { "WinEnter", "*", "Beacon" },
-    --     -- https://stackoverflow.com/a/42118416/2571881  - https://st.suckless.org/patches/blinking_cursor/
-    --     { "VimLeave", "*", "lua vim.opt.guicursor='a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,n-v:hor20'"},
-    -- },
+    -- }
 }
 AuGrps(autocmds)

@@ -1,4 +1,3 @@
----@diagnostic disable: redundant-value
 local function cmd(command)
     return table.concat({ "<Cmd>", command, "<CR>" })
 end
@@ -130,7 +129,7 @@ local function window_menu()
             },
         },
         mode = "n",
-        body = "<C-w>",
+        body = "<A-w>",
         heads = {
             { "s",     cmd("split"),         opts },
             { "v",     cmd("vsplit"),        opts },
@@ -184,7 +183,7 @@ local function assistance()
             },
         },
         mode = "n",
-        body = "<C-w>",
+        body = "<C-a>",
         heads = {
             { "c", cmd("ChatGPT"), opts },
             { "C", cmd("lua require('utils.assistance').cht()"), opts },
@@ -292,7 +291,7 @@ local function spelling()
             },
         },
         mode = "n",
-        body = "<C-z>",
+        body = "<A-s>",
         heads = {
             { "J",     "]s" },
             { "K",     "[s" },
@@ -341,7 +340,7 @@ local function telescope()
             },
         },
         mode = 'n',
-        body = '<C-f>',
+        body = '<A-f>',
         heads = {
             { "b",       cmd 'lua require("plug.telescope").buffers()',    { desc = "Buffers" } },
             { "n",       cmd 'lua require("plug.telescope").nvim_files()', { desc = "Nvim Files" } },
@@ -399,7 +398,7 @@ local function option()
             },
         },
         mode = { "n", "x" },
-        body = "<C-m>",
+        body = "<A-o>",
         heads = {
             {
                 "n",

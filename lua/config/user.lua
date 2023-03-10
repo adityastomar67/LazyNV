@@ -79,6 +79,7 @@ User.plugins                    = {
     todo_comments    = true,
     neotree          = true,
     illuminate       = true,
+    regexplainer = true,
     hlargs           = false,
     hlslens          = true,
     nvim_spectre     = false,

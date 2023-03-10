@@ -27,19 +27,12 @@ return {
             },
         },
     },
-    {
-        "smjonas/inc-rename.nvim",
-        enabled = vim.g.plugin_enabled.inc_rename,
-        event = "VeryLazy",
-        config = function()
-            require("inc_rename").setup()
-        end,
-    },
     { "nvim-lua/plenary.nvim",     lazy = true },
     { "kg8m/vim-simple-align",     event = "VeryLazy" },
     { "tpope/vim-repeat",          event = "VeryLazy" },
     { "sindrets/winshift.nvim",    event = "Verylazy" },
     { "s1n7ax/nvim-window-picker", event = "Verylazy" },
+    { "junegunn/limelight.vim",    event = "VeryLazy" },
     {
         "tpope/vim-surround",
         enabled = vim.g.plugin_enabled.vim_surround,

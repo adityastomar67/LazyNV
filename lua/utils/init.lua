@@ -1,4 +1,3 @@
----@diagnostic disable: deprecated
 local TERMINAL     = require("toggleterm.terminal").Terminal
 local API_KEY_PATH = require("config.user").openai_api_path
 local CMP          = require("config.user").completion
@@ -9,12 +8,27 @@ function Utils.trim(str)
     return (string.gsub(str, "^%s*(.-)%s*$", "%1"))
 end
 
+-- Set the colorscheme selected by user
+function Utils.set_colorscheme()
+    local colorscheme = require("config.user").colorscheme
+    local ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+    if not ok then
+        vim.notify("Colorscheme " .. colorscheme .. " not found!\n Setting LazyNV as default colorscheme.")
+        vim.cmd [[colorscheme LazyNV]]
+        return
+    end
+end
+
+-- For setting the blockwise_clipboard
+function Utils.blockwise_clipboard()
+    vim.cmd("call setreg('+', @+, 'b')")
+    print("set + reg: blockwise!")
+end
+
 -- Get the root dir
 function Utils.get_root()
-    ---@type string?
     local path = vim.api.nvim_buf_get_name(0)
     path = path ~= "" and vim.loop.fs_realpath(path) or nil
-    ---@type string[]
     local roots = {}
     if path then
         for _, client in pairs(vim.lsp.get_active_clients({
@@ -35,18 +49,15 @@ function Utils.get_root()
     table.sort(roots, function(a, b)
         return #a > #b
     end)
-    ---@type string?
     local root = roots[1]
     if not root then
         path = path and vim.fs.dirname(path) or vim.loop.cwd()
-        ---@type string?
         root = vim.fs.find({ ".git", "lua" }, {
-                path = path,
-                upward = true
-            })[1]
+            path = path,
+            upward = true
+        })[1]
         root = root and vim.fs.dirname(root) or vim.loop.cwd()
     end
-    ---@cast root string
     return root
 end
 

@@ -93,7 +93,7 @@ OPT.formatoptions  = OPT.formatoptions
     - "t"                     -- Don't auto format my code. I got linters for that.
     + "c"                     -- In general, I like it when comments respect textwidth
     + "q"                     -- Allow formatting comments w/ gq
-    - "o"                     -- O and o, don't continue comments
+    + "o"                     -- O and o, don't continue comments
     + "r"                     -- But do continue when pressing enter.
     + "n"                     -- Indent past the formatlistpat, not underneath it.
     + "j"                     -- Auto-remove comments if possible.
@@ -132,7 +132,6 @@ vim.api.nvim_set_keymap({ "n", "v" }, "<Space>", "<Nop>", { noremap = true, sile
 G.mapleader = " "
 G.maplocalleader = " "
 
--- cmd "set lazyredraw"
 vim.cmd "filetype plugin indent on"
 
 G.lua_subversion            = 0
@@ -169,7 +168,7 @@ G.markdown_fenced_languages = {
     "ts=typescript",
 }
 
-local default_providers     = {
+local default_providers = {
     "node",
     "perl",
     "python3",
@@ -179,3 +178,13 @@ local default_providers     = {
 for _, provider in ipairs(default_providers) do
     vim.g["loaded_" .. provider .. "_provider"] = 0
 end
+
+-- Setting the colorscheme
+require("utils").set_colorscheme()
+
+-- Data for limelight_conceal
+vim.cmd("let g:limelight_conceal_ctermfg = 'gray'")
+vim.cmd("let g:limelight_conceal_ctermfg = 240")
+vim.cmd("let g:limelight_conceal_guifg = 'DarkGray'")
+vim.cmd("let g:limelight_conceal_guifg = '#777777'")
+vim.cmd("let g:limelight_default_coefficient = 0.9")

@@ -1,4 +1,4 @@
-vim.g.colors_name = "lazynv"
+vim.g.colors_name = "LazyNV"
 
 require("utils.colorset").setup {
     base00 = "#2b3339",
