@@ -23,6 +23,13 @@ return {
             "Don't Save Current Session" },
         },
     },
+    {
+        "smjonas/inc-rename.nvim",
+        enabled = vim.g.plugin_enabled.inc_rename,
+        config = function()
+            require("inc_rename").setup()
+        end,
+    },
     { "nvim-lua/plenary.nvim", lazy = true },
     { "kg8m/vim-simple-align", event = "VeryLazy" },
     { "tpope/vim-repeat",      event = "VeryLazy" },
