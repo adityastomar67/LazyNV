@@ -20,3 +20,6 @@ vim.api.nvim_create_autocmd("User", {
 
 -- TEMP
 -- vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+
+-- Setting the colorscheme
+vim.cmd [[lua require("utils").set_colorscheme()]]
