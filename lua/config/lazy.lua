@@ -20,9 +20,15 @@ end
 lazy.setup {
     spec = {
         { import = "plugins" },
-        -- { import = "plugins.extras.lang" },
-        -- { import = "plugins.extras.ui" },
-        -- { import = "plugins.extras.pde" },
+        { import = "plugins.assistance" },
+        { import = "plugins.completions" },
+        { import = "plugins.core" },
+        { import = "plugins.lsp" },
+        { import = "plugins.lsp.lang" },
+        { import = "plugins.testing" },
+        { import = "plugins.ui" },
+        { import = "plugins.ui.color" },
+        { import = "plugins.vcs" },
     },
     lockfile = vim.fn.stdpath('config') .. '/lua/plugins/lock.json',
     state = vim.fn.stdpath('state') .. '/lazy/state.json',

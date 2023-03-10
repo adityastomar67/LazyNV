@@ -31,9 +31,7 @@ return {
         opts = {
             sonokai_style = 'default', --'atlantis', 'andromeda', 'shusia', 'maia', 'espresso'
         },
-        config = function(_, opts)
-            require("sonokai").setup(opts)
-        end
+        config = true,
     },
     {
         "sainnhe/everforest",
