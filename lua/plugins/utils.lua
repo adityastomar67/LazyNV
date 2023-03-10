@@ -31,7 +31,7 @@ return {
     { "kg8m/vim-simple-align",     event = "VeryLazy" },
     { "tpope/vim-repeat",          event = "VeryLazy" },
     { "sindrets/winshift.nvim",    event = "BufEnter", config = true },
-    { "s1n7ax/nvim-window-picker", event = "Verylazy" },
+    { "s1n7ax/nvim-window-picker", event = "Verylazy", config = true },
     { "junegunn/limelight.vim",    event = "VeryLazy" },
     {
         "tpope/vim-surround",

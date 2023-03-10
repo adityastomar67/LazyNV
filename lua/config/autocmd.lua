@@ -167,7 +167,7 @@ API.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
 
 -- AutoCmds
 CMD [[autocmd InsertEnter * norm zz]]                           -- Vertically center document when entering insert mode
-CMD [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]] -- Auto formatting every file before save
+CMD [[autocmd BufWritePre * silent! lua vim.lsp.buf.formatting_sync()]] -- Auto formatting every file before save
 CMD [[autocmd BufNewFile,BufRead *.ejs set filetype=html]]
 
 local autocmds = {
@@ -208,7 +208,7 @@ local autocmds = {
     },
     save_shada = { { "VimLeave", "*", "wshada!" }, { "CursorHold", "*", [[rshada|wshada]] } },
     wins = { { "BufEnter", "NvimTree", [[setlocal cursorline]] } },
-    clean_trailing_spaces = { { "BufWritePre", "*", [[lua require("utils").preserve('%s/\\s\\+$//ge')]] } },
+    clean_trailing_spaces = { { "BufWritePre", "*", [[silent! lua require("utils").preserve('%s/\\s\\+$//ge')]] } },
     attatch_colorizer = { { "BufEnter", "*.css,*.scss,*.js,*.html,*.tsx", "ColorizerAttachToBuffer<CR>" } },
     mkdir_before_saving = {
         { "BufWritePre", "FileWritePre", "*", "[[ silent! call mkdir(expand(\"<afile>:p:h\"), \"p\")]]" } },
