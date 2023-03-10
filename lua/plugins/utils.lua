@@ -1,4 +1,7 @@
 return {
+    "nvim-lua/plenary.nvim",
+    "MunifTanjim/nui.nvim",
+    "nvim-tree/nvim-web-devicons",
     {
         "dstein64/vim-startuptime",
         enabled = vim.g.plugin_enabled.vim_startuptime,
@@ -16,10 +19,16 @@ return {
         keys = {
             { "<leader>qs", function() require("persistence").load() end,                desc = "Restore Session" },
             { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-            { "<leader>qd", function() require("persistence").stop() end,                desc = "Don't Save Current Session" },
+            { "<leader>qd", function() require("persistence").stop() end,                desc =
+            "Don't Save Current Session" },
         },
     },
     { "nvim-lua/plenary.nvim", lazy = true },
     { "kg8m/vim-simple-align", event = "VeryLazy" },
-    { "tpope/vim-surround",    enabled = vim.g.plugin_enabled.vim_surround, event = "BufReadPre" },
+    { "tpope/vim-repeat",      event = "VeryLazy" },
+    {
+        "tpope/vim-surround",
+        enabled = vim.g.plugin_enabled.vim_surround,
+        event = "BufReadPre"
+    },
 }

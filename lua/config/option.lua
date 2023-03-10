@@ -127,6 +127,11 @@ if vim.fn.has "nvim-0.9.0" == 1 then
     O.ch = 0
 end
 
+-- Remap space as leader key
+vim.api.nvim_set_keymap({ "n", "v" }, "<Space>", "<Nop>", { noremap = true, silent = true })
+G.mapleader = " "
+G.maplocalleader = " "
+
 -- cmd "set lazyredraw"
 vim.cmd "filetype plugin indent on"
 

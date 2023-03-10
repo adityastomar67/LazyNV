@@ -4,13 +4,13 @@ local CMD = vim.cmd
 -- Function for creating AuGroups
 function AuGrps(definitions)
     for group_name, definition in pairs(definitions) do
-        vim.api.nvim_command("augroup " .. group_name)
-        vim.api.nvim_command("autocmd!")
+        API.nvim_command("augroup " .. group_name)
+        API.nvim_command("autocmd!")
         for _, def in ipairs(definition) do
             local command = table.concat(vim.tbl_flatten({ "autocmd", def }), " ")
-            vim.api.nvim_command(command)
+            API.nvim_command(command)
         end
-        vim.api.nvim_command("augroup END")
+        API.nvim_command("augroup END")
     end
 end
 
@@ -40,7 +40,7 @@ API.nvim_create_autocmd("BufEnter", {
     group = syntax_group,
     pattern = "*",
     callback = function()
-        if vim.api.nvim_buf_line_count(0) > 10000 then
+        if API.nvim_buf_line_count(0) > 10000 then
             CMD [[ syntax off ]]
         end
     end
@@ -98,6 +98,9 @@ vim.on_key(toggle_hlsearch, ns)
 -- Windows to close with q
 API.nvim_create_autocmd("FileType", {
     pattern = {
+        "Jaq",
+        "lir",
+        "DressingSelect",
         "cheat",
         "copilot.*",
         "OverseerForm",
@@ -138,6 +141,15 @@ API.nvim_create_autocmd("VimLeave", {
     end,
 })
 
+-- Enable spellcheck on gitcommit and markdown
+API.nvim_create_autocmd({ 'FileType' }, {
+    pattern = { 'gitcommit', 'markdown' },
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.spell = true
+    end,
+})
+
 -- Don't auto comment new line
 API.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
 
@@ -168,8 +180,8 @@ local autocmds = {
     make_scripts_executable = { { "BufWritePost", "*.sh,*.py,*.zsh", [[silent !chmod +x %]] } },
     live_reload_webDev = { { "BufWritePost", "index.html,*.css", [[silent! !~/.scripts/refresh]] } },
     custom_updates = {
-        { "BufWritePost", "~/.Xresources", "!xrdb -merge ~/.Xresources" },
-        { "BufWritePost", "~/.Xdefaults",  "!xrdb -merge ~/.Xdefaults" },
+        { "BufWritePost", ".Xresources", "!xrdb -merge ~/.Xresources" },
+        { "BufWritePost", ".Xdefaults",  "!xrdb -merge ~/.Xdefaults" },
         { "BufWritePost", "fonts.conf",    "!fc-cache" }
     },
     resize_windows_proportionally = { { "VimResized", "*", ":wincmd =" }, { "Filetype", "help", ":wincmd =" } },
@@ -194,7 +206,7 @@ local autocmds = {
             [[exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""]] },
     },
     -- autoskel = {
-    -- {"BufNewFile", "*.lua,*.sh", 'lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i_skel<CR>",true,false,true),"m",true)' },
+    -- {"BufNewFile", "*.lua,*.sh", 'lua API.nvim_feedkeys(API.nvim_replace_termcodes("i_skel<CR>",true,false,true),"m",true)' },
     -- },
     -- wrap_spell = {
     --     { "FileType", "markdown", ":setlocal wrap" },

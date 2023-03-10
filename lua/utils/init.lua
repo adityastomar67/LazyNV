@@ -114,6 +114,7 @@ function Utils.reload_config()
     end
     dofile(vim.env.MYVIMRC)
     if hls_status == 0 then vim.opt.hlsearch = false end
+    vim.notify('Nvim configuration reloaded!', vim.log.levels.INFO)
 end
 
 function Utils.preserve(arguments)

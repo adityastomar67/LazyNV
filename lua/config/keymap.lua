@@ -23,14 +23,7 @@
 
 local opts      = { noremap = true, silent = true }
 local term_opts = { silent = true }
-local key    = vim.api.nvim_set_keymap
-
--- vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-
--- Remap space as leader key
-key({ "n", "v" }, "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+local key       = vim.api.nvim_set_keymap
 
 -- Reselect the previous visual block
 key("n", "gV", "`[v`]", opts)
