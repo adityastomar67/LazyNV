@@ -136,7 +136,7 @@ vim.cmd "filetype plugin indent on"
 
 G.lua_subversion            = 0
 G.BetterLua_enable_emmylua  = 0
-G.plugin_enabled            = require("config.user").plugins
+
 
 -- IMPROVE NEOVIM STARTUP
 G.loaded_python_provier     = 0

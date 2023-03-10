@@ -27,7 +27,7 @@ lazy.setup {
         { import = "plugins.lsp.lang" },
         { import = "plugins.testing" },
         { import = "plugins.ui" },
-        { import = "plugins.ui.color" },
+        { import = "plugins.ui.colors" },
         { import = "plugins.vcs" },
     },
     lockfile = vim.fn.stdpath('config') .. '/lua/plugins/lock.json',
