@@ -346,6 +346,17 @@ function lspkind.cmp_format(opts)
         if entry.source.name == "cmp_tabnine" then
             vim_item.kind = string.format("%s %s", "", "Tabnine")
         end
+
+        local function trim(text)
+            local max = 40
+            if text and text:len() > max then
+                text = text:sub(1, max) .. "󰇘"
+            end
+            return text
+        end
+
+        vim_item.abbr = trim(vim_item.abbr)
+        vim_item.abbr = vim_item.abbr:match("[^(]+")
         return vim_item
     end
 end
