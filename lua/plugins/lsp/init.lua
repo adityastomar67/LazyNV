@@ -11,7 +11,8 @@ return {
             "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim",
             "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-nvim-lsp-signature-help"
         },
-        opts = {
+        config = function(plugin, _)
+            require("plugins.lsp.servers").setup(plugin, {
             servers = {
                 clangd = {
                     capabilities = clang,
@@ -71,9 +72,7 @@ return {
                     end)
                 end
             }
-        },
-        config = function(plugin, opts)
-            require("plugins.lsp.servers").setup(plugin, opts)
+        })
         end
     }, {
         "williamboman/mason.nvim",
