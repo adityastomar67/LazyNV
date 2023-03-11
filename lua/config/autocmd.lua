@@ -211,7 +211,7 @@ local autocmds = {
     attatch_colorizer = { { "BufEnter", "*.css,*.scss,*.js,*.html,*.tsx", "ColorizerAttachToBuffer<CR>" } },
     mkdir_before_saving = {
         { "BufWritePre", "FileWritePre", "*", "[[ silent! call mkdir(expand(\"<afile>:p:h\"), \"p\")]]" } },
-    trim_extra_spaces_and_newlines = { { "BufWritePre", "*", require("utils").preserve("%s/\\s\\+$//ge") } },
+    trim_extra_spaces_and_newlines = { { "BufWritePre", "*", [[lua require("utils").preserve("%s/\\s\\+$//ge")]] } },
     hicurrent_word = {
         { "CursorMoved", "*",
             [[exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""]] },

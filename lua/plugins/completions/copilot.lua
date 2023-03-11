@@ -1,6 +1,7 @@
 return {
     "zbirenbaum/copilot-cmp",
     enabled = vim.g.plugin_enabled.cmp_copilot,
+    event = "VeryLazy",
     dependencies = { "copilot.lua" },
     config = function()
         require("copilot_cmp").setup({

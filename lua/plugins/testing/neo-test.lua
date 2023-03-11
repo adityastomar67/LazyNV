@@ -1,6 +1,7 @@
 return {
     "nvim-neotest/neotest",
     enabled = vim.g.plugin_enabled.neotest,
+    event = "VeryLazy",
     keys = {
         {
             "<leader>tNF",

@@ -181,6 +181,7 @@ end
 
 -- Setting the colorscheme
 require("utils").set_colorscheme()
+vim.cmd [[colorscheme highlights]]
 
 -- Data for limelight_conceal
 vim.cmd [[let g:limelight_conceal_ctermfg = 'gray']]

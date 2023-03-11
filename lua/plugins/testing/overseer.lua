@@ -1,6 +1,7 @@
 return {
     "stevearc/overseer.nvim",
     enabled = vim.g.plugin_enabled.overseer,
+    event = "VeryLazy",
     keys = {
         { "<leader>toR", "<cmd>OverseerRunCmd<cr>",       desc = "Run Command" },
         { "<leader>toa", "<cmd>OverseerTaskAction<cr>",   desc = "Task Action" },

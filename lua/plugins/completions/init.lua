@@ -1,7 +1,7 @@
 return {
     "hrsh7th/nvim-cmp",
     enabled = vim.g.plugin_enabled.nvim_cmp,
-    event = "InsertEnter",
+    event = "VeryLazy",
     dependencies = {
         "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-buffer",

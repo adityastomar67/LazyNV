@@ -1,5 +1,6 @@
 return {
     "L3MON4D3/LuaSnip",
+    event = "VeryLazy",
     enabled = vim.g.plugin_enabled.LuaSnip,
     dependencies = {
         -- {

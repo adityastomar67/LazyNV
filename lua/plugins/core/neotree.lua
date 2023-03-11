@@ -1,6 +1,7 @@
 return {
     "nvim-neo-tree/neo-tree.nvim",
     enabled = vim.g.plugin_enabled.neotree,
+    event = "VeryLazy",
     cmd = "Neotree",
     deactivate = function()
         vim.cmd [[Neotree close]]

@@ -1,6 +1,7 @@
 return {
     "kevinhwang91/nvim-ufo",
     enabled = vim.g.plugin_enabled.nvim_ufo,
+    event = "VeryLazy",
     dependencies = { "kevinhwang91/promise-async", "neovim/nvim-lspconfig" },
     --stylua: ignore
     keys = {
