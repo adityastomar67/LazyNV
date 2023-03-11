@@ -3,6 +3,10 @@ local API_KEY_PATH = require("config.user").openai_api_path
 local CMP          = require("config.user").completion
 local DIAGNOSTIC   = require("config.user").diagnostic
 local Utils        = {}
+
+function Utils.has(plugin)
+    return require("lazy.core.config").plugins[plugin] ~= nil
+end
 -- local is_windows = vim.loop.os_uname().version:match 'Windows'
 
 -- Utils.path = (function()
