@@ -1,23 +1,48 @@
+local clang = vim.lsp.protocol.make_client_capabilities()
+clang.offsetEncoding = { "utf-16" }
+
 return {
     {
         "neovim/nvim-lspconfig",
         event = "BufReadPre",
         dependencies = {
-            {"folke/neoconf.nvim", cmd = "Neoconf", config = true}, {
-                "folke/neodev.nvim",
-                opts = {
-                    library = {
-                        plugins = {"neotest", "nvim-dap-ui"},
-                        types = true
-                    }
-                }
-            }, {"j-hui/fidget.nvim", config = true},
+            {"j-hui/fidget.nvim", config = true},
             {"smjonas/inc-rename.nvim", config = true},
             "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim",
             "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-nvim-lsp-signature-help"
         },
         opts = {
             servers = {
+                clangd = {
+                    capabilities = clang,
+                    cmd = {
+                        "clangd",
+                        "--background-index",
+                        "--pch-storage=memory",
+                        "--clang-tidy",
+                        "--suggest-missing-includes",
+                        "--cross-file-rename",
+                        "--completion-style=detailed",
+                    },
+                    init_options = {
+                        clangdFileStatus     = true,
+                        usePlaceholders      = true,
+                        completeUnimported   = true,
+                        semanticHighlighting = true,
+                    },
+                    filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+                    log_level = 2,
+                    root_dir = require("lspconfig.util").root_pattern({
+                            ".clangd",
+                            ".clang-tidy",
+                            ".clang-format",
+                            "compile_commands.json",
+                            "compile_flags.txt",
+                            "configure.ac",
+                            ".git",
+                        }) or vim.loop.cwd(),
+                    single_file_support = true,
+                },
                 lua_ls = {
                     settings = {
                         Lua = {

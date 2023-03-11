@@ -1,6 +1,7 @@
 local Dap = {
     "mfussenegger/nvim-dap",
     enabled = vim.g.plugin_enabled.nvim_dap,
+    event = "VeryLazy",
     dependencies = {
         { "rcarriga/nvim-dap-ui" },
         { "theHamsta/nvim-dap-virtual-text" },
