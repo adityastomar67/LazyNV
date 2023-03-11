@@ -1,7 +1,7 @@
 vim.g.plugin_enabled = require("config.user").plugins
 for _, source in ipairs({
-    "config.option",
     "config.lazy",
+    "config.option",
 }) do
     local status_ok, fault = pcall(require, source)
     if not status_ok then
