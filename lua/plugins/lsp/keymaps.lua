@@ -1,72 +1,59 @@
 local M = {}
 
-M._keys = nil
+function M.on_attach(client, buffer)
+  local self = M.new(client, buffer)
 
-function M.get()
+  self:map("gd", "Telescope lsp_definitions", { desc = "Goto Definition" })
+  self:map("gr", "Telescope lsp_references", { desc = "References" })
+  self:map("gD", "Telescope lsp_declarations", { desc = "Goto Declaration" })
+  self:map("gI", "Telescope lsp_implementations", { desc = "Goto Implementation" })
+  self:map("gb", "Telescope lsp_type_definitions", { desc = "Goto Type Definition" })
+  self:map("K", "Lspsaga hover_doc", { desc = "Hover" })
+  self:map("gK", vim.lsp.buf.signature_help, { desc = "Signature Help", has = "signatureHelp" })
+  self:map("[d", M.diagnostic_goto(true), { desc = "Next Diagnostic" })
+  self:map("]d", M.diagnostic_goto(false), { desc = "Prev Diagnostic" })
+  self:map("]e", M.diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+  self:map("[e", M.diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+  self:map("]w", M.diagnostic_goto(true, "WARNING"), { desc = "Next Warning" })
+  self:map("[w", M.diagnostic_goto(false, "WARNING"), { desc = "Prev Warning" })
+  self:map("<leader>ca", "Lspsaga code_action", { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
+
   local format = require("plugins.lsp.format").format
-  if not M._keys then
-    -- stylua: ignore
-    M._keys =  {
-      { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-      { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
-      { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" },
-      { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
-      { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
-      { "gI", "<cmd>Telescope lsp_implementations<cr>", desc = "Goto Implementation" },
-      { "gt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definition" },
-      { "K", vim.lsp.buf.hover, desc = "Hover" },
-      { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
-      { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
-      { "]d", M.diagnostic_goto(true), desc = "Next Diagnostic" },
-      { "[d", M.diagnostic_goto(false), desc = "Prev Diagnostic" },
-      { "]e", M.diagnostic_goto(true, "ERROR"), desc = "Next Error" },
-      { "[e", M.diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
-      { "]w", M.diagnostic_goto(true, "WARN"), desc = "Next Warning" },
-      { "[w", M.diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
-      { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
-      { "<leader>cf", format, desc = "Format Document", has = "documentFormatting" },
-      { "<leader>cf", format, desc = "Format Range", mode = "v", has = "documentRangeFormatting" },
-    }
-    if require("utils").has("inc-rename.nvim") then
-      M._keys[#M._keys + 1] = {
-        "<leader>cr",
-        function()
-          require("inc_rename")
-          return ":IncRename " .. vim.fn.expand("<cword>")
-        end,
-        expr = true,
-        desc = "Rename",
-        has = "rename",
-      }
-    else
-      M._keys[#M._keys + 1] = { "<leader>cr", vim.lsp.buf.rename, desc = "Rename", has = "rename" }
-    end
-  end
-  return M._keys
+  self:map("<leader>cf", format, { desc = "Format Document", has = "documentFormatting" })
+  self:map("<leader>cf", format, { desc = "Format Range", mode = "v", has = "documentRangeFormatting" })
+  self:map("<leader>cr", M.rename, { expr = true, desc = "Rename", has = "rename" })
+
+  self:map("<leader>cs", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
+  self:map("<leader>cS", require("telescope.builtin").lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
 end
 
-function M.on_attach(client, buffer)
-  local Keys = require("lazy.core.handler.keys")
-  local keymaps = {} 
+function M.new(client, buffer)
+  return setmetatable({ client = client, buffer = buffer }, { __index = M })
+end
 
-  for _, value in ipairs(M.get()) do
-    local keys = Keys.parse(value)
-    if keys[2] == vim.NIL or keys[2] == false then
-      keymaps[keys.id] = nil
-    else
-      keymaps[keys.id] = keys
-    end
+function M:has(cap)
+  return self.client.server_capabilities[cap .. "Provider"]
+end
+
+function M:map(lhs, rhs, opts)
+  opts = opts or {}
+  if opts.has and not self:has(opts.has) then
+    return
   end
+  vim.keymap.set(
+    opts.mode or "n",
+    lhs,
+    type(rhs) == "string" and ("<cmd>%s<cr>"):format(rhs) or rhs,
+    ---@diagnostic disable-next-line: no-unknown
+    { silent = true, buffer = self.buffer, expr = opts.expr, desc = opts.desc }
+  )
+end
 
-  for _, keys in pairs(keymaps) do
-    if not keys.has or client.server_capabilities[keys.has .. "Provider"] then
-      local opts = Keys.opts(keys)
-      ---@diagnostic disable-next-line: no-unknown
-      opts.has = nil
-      opts.silent = true
-      opts.buffer = buffer
-      vim.keymap.set(keys.mode or "n", keys[1], keys[2], opts)
-    end
+function M.rename()
+  if pcall(require, "inc_rename") then
+    return ":IncRename " .. vim.fn.expand "<cword>"
+  else
+    vim.lsp.buf.rename()
   end
 end
 
@@ -74,7 +61,7 @@ function M.diagnostic_goto(next, severity)
   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
-    go({ severity = severity })
+    go { severity = severity }
   end
 end
 
