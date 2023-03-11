@@ -1,3 +1,13 @@
+local function on_attach(on_attach)
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      local buffer = args.buf
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      on_attach(client, buffer)
+    end,
+  })
+end
+
 return {
   -- lspconfig
   {
@@ -11,7 +21,7 @@ return {
       {
         "hrsh7th/cmp-nvim-lsp",
         cond = function()
-          return require("lazyvim.util").has("nvim-cmp")
+          return require("utils").has("nvim-cmp")
         end,
       },
     },
@@ -67,15 +77,15 @@ return {
     ---@param opts PluginLspOpts
     config = function(_, opts)
       -- setup autoformat
-      require("lazyvim.plugins.lsp.format").autoformat = opts.autoformat
+      require("plugins.lsp.format").autoformat = opts.autoformat
       -- setup formatting and keymaps
-      require("lazyvim.util").on_attach(function(client, buffer)
-        require("lazyvim.plugins.lsp.format").on_attach(client, buffer)
-        require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
+      on_attach(function(client, buffer)
+        require("plugins.lsp.format").on_attach(client, buffer)
+        require("plugins.lsp.keymaps").on_attach(client, buffer)
       end)
 
       -- diagnostics
-      for name, icon in pairs(require("lazyvim.config").icons.diagnostics) do
+      for name, icon in pairs(require("utils.lspkind").icons.diagnostics) do
         name = "DiagnosticSign" .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
       end
