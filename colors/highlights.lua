@@ -1,3 +1,6 @@
+local alpha = 0.4
+local util = require("utils")
+
 local telescope = {
     TelescopeBorder            = { fg = "#1b1f27", bg = "#1b1f27" },
     TelescopePromptBorder      = { fg = "#252931", bg = "#252931" },
@@ -55,6 +58,17 @@ local cmp = {
     CmpItemKindTypeParameter = { fg = "#e06c75", bg = "NONE" },
 }
 
+local gitsigns = {
+    GitSignsAdd      = { fg = '#91b362', bg = "NONE" },
+    GitSignsAddNr    = { fg = '#91b362', bg = "NONE" },
+    GitSignsAddLn    = { fg = '#91b362', bg = "NONE" },
+    GitSignsChange   = { fg = '#6994bf', bg = "NONE" },
+    GitSignsChangeNr = { fg = '#6994bf', bg = "NONE" },
+    GitSignsChangeLn = { fg = '#6994bf', bg = "NONE" },
+    GitSignsDelete   = { fg = '#d96c75', bg = "NONE" },
+    GitSignsDeleteNr = { fg = '#d96c75', bg = "NONE" },
+    GitSignsDeleteLn = { fg = '#d96c75', bg = "NONE" },
+}
 
 local function highlight(group, color)
     local fg    = color.fg    and 'guifg=' .. color.fg    or 'guifg=NONE'
@@ -74,3 +88,11 @@ end
 for group, color in pairs(cmp) do
     highlight(group, color)
 end
+for group, color in pairs(gitsigns) do
+    highlight(group, color)
+end
+
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { bg = "NONE", fg = util.blend("#db4b4b", "#00db4b4b", alpha) })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn",  { bg = "NONE", fg = util.blend("#e0af68", "#00e0af68", alpha) })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo",  { bg = "NONE", fg = util.blend("#0db9d7", "#000db9d7", alpha) })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint",  { bg = "NONE", fg = util.blend("#10B981", "#0010B981", alpha) })
