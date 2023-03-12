@@ -40,7 +40,7 @@ local function gitsigns_menu()
                 gitsigns.toggle_deleted(false)
             end,
         },
-        body = "<A-g>",
+        body = "<a-g>",
         heads = {
             {
                 "J",
@@ -129,7 +129,7 @@ local function window_menu()
             },
         },
         mode = "n",
-        body = "<A-w>",
+        body = "<a-w>",
         heads = {
             { "s",     cmd("split"),         opts },
             { "v",     cmd("vsplit"),        opts },
@@ -183,7 +183,7 @@ local function assistance()
             },
         },
         mode = "n",
-        body = "<C-a>",
+        body = "<a-a>",
         heads = {
             { "c", cmd("ChatGPT"), opts },
             { "C", cmd("lua require('utils.assistance').cht()"), opts },
@@ -232,7 +232,7 @@ local function dap_menu()
             },
         },
         mode = "n",
-        body = "<A-d>",
+        body = "<a-d>",
         -- stylua: ignore
         heads = {
             { "C", function() dap.set_breakpoint(vim.fn.input "[Condition] > ") end, desc = "Conditional Breakpoint", },
@@ -291,7 +291,7 @@ local function spelling()
             },
         },
         mode = "n",
-        body = "<A-s>",
+        body = "<a-s>",
         heads = {
             { "J",     "]s" },
             { "K",     "[s" },
@@ -340,7 +340,7 @@ local function telescope()
             },
         },
         mode = 'n',
-        body = '<A-f>',
+        body = '<a-f>',
         heads = {
             { "b",       cmd 'lua require("plug.telescope").buffers()',    { desc = "Buffers" } },
             { "n",       cmd 'lua require("plug.telescope").nvim_files()', { desc = "Nvim Files" } },
@@ -398,7 +398,7 @@ local function option()
             },
         },
         mode = { "n", "x" },
-        body = "<A-o>",
+        body = "<a-o>",
         heads = {
             {
                 "n",
