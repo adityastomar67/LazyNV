@@ -133,7 +133,7 @@ Icons.icons = {
     },
     diagnostics = {
         BoldError = "",
-        Error = "",
+        Error = "",
         BoldWarning = "",
         Warning = "",
         BoldInformation = "",

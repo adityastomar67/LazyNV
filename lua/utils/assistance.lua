@@ -4,7 +4,8 @@ local OPEN_TERM  = require("utils").open_term
 local TRIM       = require("utils").trim
 local OPENAI_URL = "https://api.openai.com/v1/engines/davinci-codex/completions" -- {cushman-codex / davinci-codex}
 local MAX_TOKENS = 300
-local API        = require("utils").get_api_key
+local API_KEY    = require("utils").get_api_key
+local API        = vim.api
 local Assistance = {}
 
 
@@ -16,8 +17,8 @@ end
 
 -- For StackOverflow Assistance
 function Assistance.so_input()
-    local buf = vim.api.nvim_get_current_buf()
-    local file_type = vim.api.nvim_buf_get_option(buf, "filetype")
+    local buf = API.nvim_get_current_buf()
+    local file_type = API.nvim_buf_get_option(buf, "filetype")
     vim.ui.input({ prompt = "StackOverflow input: ", default = file_type .. " " },
         function(input)
             local cmd = ""
@@ -38,17 +39,17 @@ local file_type = ""
 local function cht_on_exit(_) vim.cmd [[normal gg]] end
 local function cht_on_open(term)
     vim.cmd "stopinsert"
-    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>",
+    API.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>",
         { noremap = true, silent = true })
-    vim.api.nvim_buf_set_name(term.bufnr, "cheatsheet-" .. term.bufnr)
-    vim.api.nvim_buf_set_option(term.bufnr, "filetype", "cheat")
-    vim.api.nvim_buf_set_option(term.bufnr, "syntax", lang)
+    API.nvim_buf_set_name(term.bufnr, "cheatsheet-" .. term.bufnr)
+    API.nvim_buf_set_option(term.bufnr, "filetype", "cheat")
+    API.nvim_buf_set_option(term.bufnr, "syntax", lang)
 end
 
 function Assistance.cht()
-    local buf = vim.api.nvim_get_current_buf()
+    local buf = API.nvim_get_current_buf()
     lang = ""
-    file_type = vim.api.nvim_buf_get_option(buf, "filetype")
+    file_type = API.nvim_buf_get_option(buf, "filetype")
     vim.ui.input({ prompt = "cht.sh input: ", default = file_type .. " " },
         function(input)
             local cmd = ""
@@ -98,22 +99,22 @@ function Assistance.interactive_cheatsheet_toggle() interactive_cheatsheet:toggl
 function Assistance.complete(v)
     v = v or true
     local ft = vim.bo.filetype
-    local buf = vim.api.nvim_get_current_buf()
+    local buf = API.nvim_get_current_buf()
 
-    local api_key = API
+    local api_key = API_KEY
     if api_key == nil then
-        vim.notify "OpenAI API key not found"
+        vim.notify "OpenAI API_KEY key not found"
         return
     end
 
     local text = ""
     if v then
-        local line1 = vim.api.nvim_buf_get_mark(0, "<")[1]
-        local line2 = vim.api.nvim_buf_get_mark(0, ">")[1]
-        text = vim.api.nvim_buf_get_lines(buf, line1 - 1, line2, false)
+        local line1 = API.nvim_buf_get_mark(0, "<")[1]
+        local line2 = API.nvim_buf_get_mark(0, ">")[1]
+        text = API.nvim_buf_get_lines(buf, line1 - 1, line2, false)
         text = TRIM(table.concat(text, "\n"))
     else
-        text = TRIM(vim.api.nvim_get_current_line())
+        text = TRIM(API.nvim_get_current_line())
     end
     local cs                     = vim.bo.commentstring
     text                         = string.format(cs .. "\n%s", ft, text)
@@ -152,7 +153,7 @@ function Assistance.complete(v)
             for match in (completion .. delimiter):gmatch("(.-)" .. delimiter) do
                 table.insert(lines, match)
             end
-            vim.api.nvim_buf_set_lines(buf, -1, -1, false, lines)
+            API.nvim_buf_set_lines(buf, -1, -1, false, lines)
         end
     end
 end
@@ -170,8 +171,8 @@ function Assistance.project_info_toggle() project_info:toggle() end
 
 -- Shell-GPT
 function Assistance.shell_gpt()
-    local buf = vim.api.nvim_get_current_buf()
-    file_type = vim.api.nvim_buf_get_option(buf, "filetype")
+    local buf = API.nvim_get_current_buf()
+    file_type = API.nvim_buf_get_option(buf, "filetype")
     vim.ui.input({ prompt = "What you want to do in " .. file_type .. " language? " }, function(input)
         local cmd = ""
         if input == "" or not input then
@@ -189,8 +190,8 @@ end
 
 -- howdoi
 function Assistance.howdoi()
-    local buf = vim.api.nvim_get_current_buf()
-    file_type = vim.api.nvim_buf_get_option(buf, "filetype")
+    local buf = API.nvim_get_current_buf()
+    file_type = API.nvim_buf_get_option(buf, "filetype")
     vim.ui.input({ prompt = "howdoi input: " }, function(input)
         local cmd = ""
         if input == "" or not input then
@@ -206,7 +207,7 @@ end
 
 -- howto
 function Assistance.howto()
-    local buf = vim.api.nvim_get_current_buf()
+    local buf = API.nvim_get_current_buf()
     vim.ui.input({ prompt = "howto input: " }, function(input)
         local cmd = ""
         if input == "" or not input then

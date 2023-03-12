@@ -2,6 +2,11 @@ return {
     "MunifTanjim/nui.nvim",
     "nvim-tree/nvim-web-devicons",
     {
+        "norcalli/nvim-colorizer.lua",
+        event = "VeryLazy",
+        config = true,
+    },
+    {
         "dstein64/vim-startuptime",
         enabled = vim.g.plugin_enabled.vim_startuptime,
         cmd = "StartupTime",
