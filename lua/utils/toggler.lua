@@ -25,7 +25,7 @@ local mode = {
     ["v"] = "norm! c",
 }
 
-local toggle = function()
+local toggler = function()
     local word = vim.tbl_get(table, vim.fn.expand("<cword>"))
     xpcall(function()
         vim.cmd(vim.tbl_get(mode, vim.api.nvim_get_mode().mode) .. word)
@@ -34,4 +34,4 @@ local toggle = function()
     end)
 end
 
-return { toggle = toggle }
+return { toggle = toggler }

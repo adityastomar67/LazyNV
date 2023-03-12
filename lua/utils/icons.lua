@@ -1,7 +1,7 @@
-local lspkind = {}
+local Icons = {}
 local fmt = string.format
 
-lspkind.icons = {
+Icons.icons = {
     kind = {
         Array = "",
         Boolean = "",
@@ -154,6 +154,15 @@ lspkind.icons = {
         Package = "",
         CircuitBoard = "",
     },
+    todo = {
+        TODO = " ",
+        DONE = " ",
+        HACK = " ",
+        WARN = " ",
+        PERF = " ",
+        NOTE = " ",
+        FIX  = " ",
+    },
 }
 
 local kind_presets = {
@@ -216,6 +225,8 @@ local kind_presets = {
         TypeParameter = ""
     }
 }
+Icons.presets = kind_presets
+Icons.symbol_map = kind_presets.codicons
 
 local kind_order = {
     "Copilot", "Text", "Method", "Function", "Constructor", "Field", "Variable",
@@ -226,8 +237,8 @@ local kind_order = {
 local kind_len = 25
 
 local function get_symbol(kind)
-    local symbol = lspkind.symbol_map[kind]
-    if kind == "copilot" then symbol = lspkind.symbol_map["Copilot"] end
+    local symbol = Icons.symbol_map[kind]
+    if kind == "copilot" then symbol = Icons.symbol_map["Copilot"] end
     return symbol or ""
 end
 
@@ -275,14 +286,14 @@ local function opt_preset(opts)
     return preset
 end
 
-function lspkind.init(opts)
+function Icons.init(opts)
     if opts ~= nil and opts["with_text"] ~= nil then
         vim.api.nvim_command("echoerr 'DEPRECATED replaced by mode option.'")
     end
     local preset = opt_preset(opts)
 
     local symbol_map = kind_presets[preset]
-    lspkind.symbol_map = (opts and opts["symbol_map"] and
+    Icons.symbol_map = (opts and opts["symbol_map"] and
         vim.tbl_extend("force", symbol_map,
             opts["symbol_map"])) or symbol_map
 
@@ -290,7 +301,7 @@ function lspkind.init(opts)
     local len = kind_len
     for i = 1, len do
         local name = kind_order[i]
-        symbols[i] = lspkind.symbolic(name, opts)
+        symbols[i] = Icons.symbolic(name, opts)
     end
 
     for k, v in pairs(symbols) do
@@ -298,10 +309,8 @@ function lspkind.init(opts)
     end
 end
 
-lspkind.presets = kind_presets
-lspkind.symbol_map = kind_presets.codicons
 
-function lspkind.symbolic(kind, opts)
+function Icons.symbolic(kind, opts)
     local mode = opt_mode(opts)
     local formatter = modes[mode]
 
@@ -311,14 +320,14 @@ function lspkind.symbolic(kind, opts)
     return formatter(kind)
 end
 
-function lspkind.cmp_format(opts)
+function Icons.cmp_format(opts)
     if opts == nil then opts = {} end
-    if opts.preset or opts.symbol_map then lspkind.init(opts) end
+    if opts.preset or opts.symbol_map then Icons.init(opts) end
 
     return function(entry, vim_item)
         if opts.before then vim_item = opts.before(entry, vim_item) end
 
-        vim_item.kind = lspkind.symbolic(vim_item.kind, opts)
+        vim_item.kind = Icons.symbolic(vim_item.kind, opts)
 
         if opts.menu ~= nil then
             vim_item.menu = opts.menu[entry.source.name]
@@ -361,4 +370,4 @@ function lspkind.cmp_format(opts)
     end
 end
 
-return lspkind
+return Icons

@@ -1,9 +1,5 @@
-local ok, builtin = pcall(require, "telescope.builtin")
-if not ok then return end
-
-local ok, actions = pcall(require, "telescope.actions")
-if not ok then return end
-
+local _, BUILTIN = pcall(require, "telescope.builtin")
+local _, ACTIONS = pcall(require, "telescope.actions")
 local Telescope = {}
 
 Telescope.find_files = function()
@@ -14,12 +10,12 @@ Telescope.find_files = function()
         previewer            = true,
         hidden               = true,
     }
-    local status = pcall(builtin.git_files, opts)
-    if not status then builtin.find_files(opts) end
+    local status = pcall(BUILTIN.git_files, opts)
+    if not status then BUILTIN.find_files(opts) end
 end
 
 Telescope.xdg_config = function()
-    builtin.find_files({
+    BUILTIN.find_files({
         prompt_title         = "XDG-CONFIG",
         find_command         = { "fd", "--no-ignore-vcs" },
         sorting_strategy     = "ascending",
@@ -37,7 +33,7 @@ Telescope.xdg_config = function()
 end
 
 Telescope.buffers = function()
-    builtin.buffers({
+    BUILTIN.buffers({
         prompt_title         = "BUFFERS",
         sorting_strategy     = "ascending",
         file_ignore_patterns = { "lua-language-server", "chromium" },
@@ -48,7 +44,7 @@ Telescope.buffers = function()
 end
 
 Telescope.nvim_files = function()
-    builtin.find_files({
+    BUILTIN.find_files({
         prompt_title         = "NVIM-FILES",
         previewer            = false,
         find_command         = { "fd", "--no-ignore-vcs" },
@@ -60,7 +56,7 @@ Telescope.nvim_files = function()
 end
 
 Telescope.search_dotfiles = function()
-    builtin.find_files({
+    BUILTIN.find_files({
         prompt_title     = "DOTFILES",
         find_command     = { "fd", "--no-ignore-vcs" },
         shorten_path     = true,
@@ -73,7 +69,7 @@ Telescope.search_dotfiles = function()
 end
 
 Telescope.search_oldfiles = function()
-    builtin.oldfiles({
+    BUILTIN.oldfiles({
         prompt_title     = "RECENT-FILES",
         previewer        = false,
         shorten_path     = true,
@@ -84,7 +80,7 @@ Telescope.search_oldfiles = function()
 end
 
 Telescope.grep_dotfiles = function()
-    builtin.live_grep({
+    BUILTIN.live_grep({
         prompt_title     = "GREP-DOTFILES",
         shorten_path     = true,
         sorting_strategy = "ascending",
@@ -94,7 +90,7 @@ Telescope.grep_dotfiles = function()
 end
 
 Telescope.grep_wiki = function()
-    builtin.live_grep({
+    BUILTIN.live_grep({
         hidden       = true,
         search_dirs  = { "~/.dotfiles/wiki" },
         prompt_title = "GREP-WIKI",
@@ -103,19 +99,19 @@ Telescope.grep_wiki = function()
 end
 
 Telescope.git_branches = function()
-    builtin.git_branches({
+    BUILTIN.git_branches({
         prompt_title    = "GIT-BRANCHES",
         path_display    = { "smart" },
         attach_mappings = function(prompt_bufnr, map)
-            map("i", "<c-d>", actions.git_delete_branch)
-            map("n", "dd"   , actions.git_delete_branch)
+            map("i", "<c-d>", ACTIONS.git_delete_branch)
+            map("n", "dd"   , ACTIONS.git_delete_branch)
             return true
         end,
     })
 end
 
 Telescope.installed_plugins = function()
-    builtin.find_files({
+    BUILTIN.find_files({
         hidden       = true,
         cwd          = vim.fn.stdpath("data") .. "/site/pack/packer/start/",
         prompt_title = "INSTALLED-PLUGS",
