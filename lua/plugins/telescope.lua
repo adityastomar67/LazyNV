@@ -129,7 +129,7 @@ return {
                     "--column",
                     "--smart-case",
                 },
-                prompt_prefix          = require("utils.lspkind").icons.ui.Search,
+                prompt_prefix          = require("utils.icons").icons.ui.Search,
                 selection_caret        = "  ",
                 entry_prefix           = "  ",
                 initial_mode           = "insert",
