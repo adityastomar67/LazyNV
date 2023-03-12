@@ -22,6 +22,8 @@ return {
         },
     },
     { "nvim-lua/plenary.nvim",     lazy = true },
+    { "smjonas/inc-rename.nvim",   enabled = vim.g.plugin_enabled.inc_rename,       config = true },
+    { "j-hui/fidget.nvim",         enabled = vim.g.plugin_enabled.fidget, config = true },
     { "kg8m/vim-simple-align",     event = "VeryLazy" },
     { "tpope/vim-repeat",          event = "VeryLazy" },
     { "sindrets/winshift.nvim",    event = "BufEnter", config = true },

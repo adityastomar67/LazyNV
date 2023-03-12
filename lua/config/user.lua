@@ -11,6 +11,7 @@ User.plugins                    = {
     copliot          = true,
     treesitter       = true,
     vim_surround     = false,
+    lspsaga = false,
     nvim_cmp         = true,
     nvim_dap         = false,
     noice            = false,
@@ -41,6 +42,7 @@ User.plugins                    = {
         comment   = false
     },
     gitsigns         = true,
+    fidget = false,
     neogit           = false,
     diffview         = false,
     vim_fugitive     = false,

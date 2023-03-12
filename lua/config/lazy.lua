@@ -29,7 +29,7 @@ lazy.setup {
         { import = "plugins.completions" },
         { import = "plugins.core" },
         -- { import = "plugins.lsp" },
-        { import = "plugins.lsp.lang" },
+        -- { import = "plugins.lsp.lang" },
         { import = "plugins.testing" },
         { import = "plugins.ui" },
         { import = "plugins.ui.colors" },
