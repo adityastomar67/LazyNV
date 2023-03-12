@@ -15,6 +15,49 @@ return {
         },
         config = function(plugin, _)
             require("plugins.lsp.servers").setup(plugin, {
+            servers = {
+                clangd = {
+                    capabilities = clang,
+                    cmd = {
+                        "clangd",
+                        "--background-index",
+                        "--pch-storage=memory",
+                        "--clang-tidy",
+                        "--suggest-missing-includes",
+                        "--cross-file-rename",
+                        "--completion-style=detailed",
+                    },
+                    init_options = {
+                        clangdFileStatus     = true,
+                        usePlaceholders      = true,
+                        completeUnimported   = true,
+                        semanticHighlighting = true,
+                    },
+                    filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+                    log_level = 2,
+                    root_dir = require("lspconfig.util").root_pattern({
+                            ".clangd",
+                            ".clang-tidy",
+                            ".clang-format",
+                            "compile_commands.json",
+                            "compile_flags.txt",
+                            "configure.ac",
+                            ".git",
+                        }) or vim.loop.cwd(),
+                    single_file_support = true,
+                },
+                lua_ls = {
+                    settings = {
+                        Lua = {
+                            workspace = {checkThirdParty = false},
+                            completion = {callSnippet = "Replace"},
+                            telemetry = {enable = false},
+                            hint = {enable = false}
+                        }
+                    }
+                },
+                dockerls = {}
+            },
             setup = {
                 lua_ls = function(_, _)
                     local lsp_utils = require "plugins.lsp.utils"
@@ -37,8 +80,14 @@ return {
         "williamboman/mason.nvim",
         cmd = "Mason",
         keys = {{"<leader>cm", "<cmd>Mason<cr>", desc = "Mason"}},
-        config = function()
+        opts = {ensure_installed = {"stylua", "clangd"}},
+        config = function(_, opts)
             require("mason").setup()
+            local mr = require "mason-registry"
+            for _, tool in ipairs(opts.ensure_installed) do
+                local p = mr.get_package(tool)
+                if not p:is_installed() then p:install() end
+            end
         end
     }, {
         "jose-elias-alvarez/null-ls.nvim",
