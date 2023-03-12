@@ -8,26 +8,6 @@ local API        = require("utils").get_api_key
 local Assistance = {}
 
 
--- For CheatSheet setup
-local ok, cheatsheet = pcall(require, "cheatsheet")
-if not ok then return end
-
-local ok, action = pcall(require, "cheatsheet.telescope.actions")
-if not ok then return end
-
-local cs_SETTINGS = {
-    bundled_cheatsheets            = true,
-    bundled_plugin_cheatsheets     = true,
-    include_only_installed_plugins = true,
-    telescope_mappings             = {
-        ["<CR>"]   = action.select_or_fill_commandline,
-        ["<A-CR>"] = action.select_or_execute,
-        ["<C-Y>"]  = action.copy_cheat_value,
-        ["<C-E>"]  = action.edit_user_cheatsheet,
-    },
-}
-cheatsheet.setup(cs_SETTINGS)
-
 -- Reddit Browsing inside Neovim
 function Assistance.reddit()
     local cmd = "tuir"
@@ -114,6 +94,7 @@ local interactive_cheatsheet = TERMINAL:new {
 }
 function Assistance.interactive_cheatsheet_toggle() interactive_cheatsheet:toggle() end
 
+-- Completions with help of OpenAI
 function Assistance.complete(v)
     v = v or true
     local ft = vim.bo.filetype
@@ -154,7 +135,7 @@ function Assistance.complete(v)
             string.format("Authorization: Bearer %s", api_key), "-d", body
         }
     }
-    local is_completed           = pcall(job.sync, job, 10000)
+    local is_completed  = pcall(job.sync, job, 10000)
     if is_completed then
         local result = job:result()
         local ok, parsed = pcall(vim.json.decode, table.concat(result, ""))
@@ -185,7 +166,6 @@ local project_info = TERMINAL:new {
     float_opts    = { border = "double" },
     close_on_exit = false
 }
-
 function Assistance.project_info_toggle() project_info:toggle() end
 
 -- Shell-GPT
@@ -237,5 +217,6 @@ function Assistance.howto()
         OPEN_TERM("howto " .. cmd, { direction = 'float' })
     end)
 end
+
 
 return Assistance
