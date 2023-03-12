@@ -22,7 +22,7 @@ return {
         local cmp = require "cmp"
         local luasnip = require "luasnip"
         -- local neogen = require "neogen"
-        local icons = require("utils.lspkind").icons
+        local icons = require("utils.icons").icons
 
         local has_words_before = function()
             local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -49,12 +49,10 @@ return {
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
-                    elseif luasnip.expandable() then
-                        luasnip.expand()
                     elseif luasnip.expand_or_jumpable() then
                         luasnip.expand_or_jump()
-                    elseif luasnip.check_backspace() then
-                        fallback()
+                    elseif has_words_before() then
+                        cmp.complete()
                     else
                         fallback()
                     end
@@ -105,7 +103,7 @@ return {
                 { name = "neosnippet" },
             },
             formatting = {
-                fields = { "abbr", "kind", "menu" },
+                fields = { "kind", "abbr", "menu" },
                 format = require("utils.lspkind").cmp_format {
                     with_text = true,
                     menu = {
@@ -132,7 +130,7 @@ return {
             confirm_opts = { behavior = cmp.ConfirmBehavior.Replace, select = false },
             window = {
                 documentation = cmp.config.window.bordered(),
-                completion = cmp.config.window.bordered(),
+                completion    = cmp.config.window.bordered(),
             },
             experimental = { ghost_text = false },
         }

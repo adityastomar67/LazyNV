@@ -59,23 +59,23 @@ return {
                         return Date.new():add_date(7):day(5):format "%Y/%m/%d"
                     end,
                 },
-                {
-                    label = "next Saturday",
-                    insertText = 1,
-                    cb = {
-                        function()
-                            return Date.new():add_date(7):day(6):format "%Y/%m/%d"
-                        end,
-                    },
+            },
+            {
+                label = "next Saturday",
+                insertText = 1,
+                cb = {
+                    function()
+                        return Date.new():add_date(7):day(6):format "%Y/%m/%d"
+                    end,
                 },
-                {
-                    label = "next Sunday",
-                    insertText = 1,
-                    cb = {
-                        function()
-                            return Date.new():add_date(7):day(7):format "%Y/%m/%d"
-                        end,
-                    },
+            },
+            {
+                label = "next Sunday",
+                insertText = 1,
+                cb = {
+                    function()
+                        return Date.new():add_date(7):day(7):format "%Y/%m/%d"
+                    end,
                 },
             },
         }
