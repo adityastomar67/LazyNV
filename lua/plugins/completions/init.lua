@@ -104,8 +104,8 @@ return {
             },
             formatting = {
                 fields = { "kind", "abbr", "menu" },
-                format = require("utils.lspkind").cmp_format {
-                    with_text = true,
+                format = require("utils.icons").cmp_format {
+                    with_text = false,
                     menu = {
                         nvim_lsp         = "[LSP]",
                         luasnip          = "[LuaSnip]",

@@ -74,7 +74,7 @@ return {
                 insertText = 1,
                 cb = {
                     function()
-                        return Date.new():add_date(7):day(7):format "%Y/%m/%d"
+                        return Date.new():add_date(7):day(0):format "%Y/%m/%d"
                     end,
                 },
             },

@@ -29,7 +29,7 @@ Icons.icons = {
         Package = "",
         Property = "",
         Reference = "",
-        Snippet = "",
+        Snippet = "",
         String = "",
         Struct = "",
         Text = "",
@@ -349,11 +349,17 @@ function Icons.cmp_format(opts)
         -- Copilot Item Check
         if entry.source.name == "copilot" then
             vim_item.kind = string.format("%s %s", "", "Copilot")
+            if opts.with_text ~= true then
+                vim_item.kind = string.format("%s", "")
+            end
         end
 
         -- Tabnine Item Check
         if entry.source.name == "cmp_tabnine" then
             vim_item.kind = string.format("%s %s", "", "Tabnine")
+            if opts.with_text ~= true then
+                vim_item.kind = string.format("%s", "")
+            end
         end
 
         local function trim(text)
