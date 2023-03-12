@@ -1,3 +1,5 @@
+local icon = require("utils.icons").icons.todo
+
 return {
     "folke/todo-comments.nvim",
     enabled = vim.g.plugin_enabled.todo_comments,
@@ -13,18 +15,13 @@ return {
         signs          = true,
         sign_priority  = 8,
         keywords       = {
-            FIX = {
-                icon  = " ",
-                color = "#C34043",
-                alt   = { "FIXME", "BUG", "FIXIT", "ISSUE" }
-                -- signs = false, -- configure signs for some keywords individually
-            },
-            TODO = { icon = " ", color = "info" },
-            DONE = { icon = " ", color = "done", alt = { "COMPLETE" } },
-            HACK = { icon = " ", color = "warning" },
-            WARN = { icon = " ", color = "error", alt = { "WARNING", "XXX" } },
-            PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-            NOTE = { icon = " ", color = "hint", alt = { "INFO" } }
+            FIX  = { icon = icon.FIX, color = "#C34043", alt   = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
+            TODO = { icon = icon.TODO, color = "info" },
+            DONE = { icon = icon.DONE, color = "done", alt = { "COMPLETE" } },
+            HACK = { icon = icon.HACK, color = "warning" },
+            WARN = { icon = icon.WARN, color = "error", alt = { "WARNING", "XXX" } },
+            PERF = { icon = icon.PERF, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+            NOTE = { icon = icon.NOTE, color = "hint", alt = { "INFO" } }
         },
         merge_keywords = true,                     -- when true, custom keywords will be merged with the defaults
         highlight      = {
@@ -37,7 +34,7 @@ return {
             exclude       = {}                     -- list of file types to exclude highlighting
         },
         colors         = {
-            error   = { "DiagnosticError"  , "ErrorMsg", "#DC2626" },
+            error   = { "DiagnosticError"  , "ErrorMsg"  , "#DC2626" },
             warning = { "DiagnosticWarning", "WarningMsg", "#FBBF24" },
             info    = { "DiagnosticInfo"   , "#7FB4CA" },
             done    = { "DiagnosticDone"   , "#00A600" },
