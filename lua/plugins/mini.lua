@@ -11,15 +11,15 @@ return {
             require("mini.map").setup(opts)
         end,
     },
-    {
-        "echasnovski/mini.move",
-        enabled = vim.g.plugin_enabled.mini.move,
-        opts = {},
-        keys = { "<<M-h>", "<M-l>", "<M-j>", "<M-k>" },
-        config = function(_, opts)
-            require("mini.move").setup(opts)
-        end,
-    },
+    -- {
+    --     "echasnovski/mini.move",
+    --     enabled = vim.g.plugin_enabled.mini.move,
+    --     opts = {},
+    --     keys = { "<<M-h>", "<M-l>", "<M-j>", "<M-k>" },
+    --     config = function(_, opts)
+    --         require("mini.move").setup(opts)
+    --     end,
+    -- },
     {
         "echasnovski/mini.ai",
         enabled = vim.g.plugin_enabled.mini.ai,

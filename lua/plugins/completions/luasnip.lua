@@ -29,7 +29,6 @@ return {
     },
     build = "make install_jsregexp",
     opts = { history = true, delete_check_events = "TextChanged" },
-    -- stylua: ignore
     keys = {
         {
             "<a-k>",
@@ -40,38 +39,35 @@ return {
             end,
             mode = { "i", "s" },
             silent = true
-        }, {
-        "<a-j>",
-        function()
-            if require("luasnip").jumpable(1) then
-                require("luasnip").jump(1)
-            end
-        end,
-        mode = { "i", "s" },
-        silent = true
-    }, {
-        "<a-l>",
-        function()
-            if require("luasnip").choice_active() then
-                require("luasnip").change_choice(1)
-            else
-                -- print current time
-                local t = os.date("*t")
-                local time = string.format("%02d:%02d:%02d", t.hour,
-                    t.min, t.sec)
-                print(time)
-            end
-        end,
-        mode = { "i", "s" }
-    }, {
-        "<a-h>",
-        function()
-            if require("luasnip").choice_active() then
-                require("luasnip").change_choice(-1)
-            end
-        end,
-        mode = { "i", "s" }
-    }
+        },
+        {
+            "<a-j>",
+            function()
+                if require("luasnip").jumpable(1) then
+                    require("luasnip").jump(1)
+                end
+            end,
+            mode = { "i", "s" },
+            silent = true
+        },
+        {
+            "<a-l>",
+            function()
+                if require("luasnip").choice_active() then
+                    require("luasnip").change_choice(1)
+                end
+            end,
+            mode = { "i", "s" }
+        },
+        {
+            "<a-h>",
+            function()
+                if require("luasnip").choice_active() then
+                    require("luasnip").change_choice(-1)
+                end
+            end,
+            mode = { "i", "s" }
+        }
     },
     config = function(_, opts)
         require("luasnip").setup(opts)
@@ -87,11 +83,11 @@ return {
 
         local types = require "luasnip.util.types"
         require("luasnip").config.set_config {
-            history = true,                            -- keep around last snippet local to jump back
+            history = true,                             -- keep around last snippet local to jump back
             updateevents = "TextChanged,TextChangedI", -- update changes as you type
             enable_autosnippets = true,
             ext_opts = {
-                [types.choiceNode] = { active = { virt_text = { { " ●" } } } },
+                [types.choiceNode] = { active = { virt_text = { { "  ●" } } } },
             },
         }
     end,
