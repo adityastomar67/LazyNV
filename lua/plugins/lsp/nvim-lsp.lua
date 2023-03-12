@@ -3,17 +3,20 @@ return {
     event = "BufReadPre",
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-nvim-lsp-signature-help"
+        "hrsh7th/cmp-nvim-lsp-signature-help",
+        "jose-elias-alvarez/typescript.nvim",
+        "b0o/SchemaStore.nvim",
     },
     config = function ()
         local lsp = require("lspconfig")
+        local icons = require("utils.icons").icons.diagnostics
         vim.diagnostic.config({ virtual_text = true })
 
         local diagnostic_signs = {
-            { name = "DiagnosticSignError", text = "" },
-            { name = "DiagnosticSignWarn",  text = "" },
-            { name = "DiagnosticSignHint",  text = "" },
-            { name = "DiagnosticSignInfo",  text = "" },
+            { name = "DiagnosticSignError", text = icons.Error },
+            { name = "DiagnosticSignWarn",  text = icons.Warning },
+            { name = "DiagnosticSignHint",  text = icons.Hint },
+            { name = "DiagnosticSignInfo",  text = icons.Information },
         }
 
         for _, sign in ipairs(diagnostic_signs) do
