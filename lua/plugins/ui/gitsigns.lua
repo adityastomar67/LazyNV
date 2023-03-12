@@ -1,15 +1,17 @@
+local icons = require("utils.icons").icons.ui
+
 return {
     "lewis6991/gitsigns.nvim",
     enabled = vim.g.plugin_enabled.gitsigns,
     event = { "BufReadPre", "BufNewFile" },
     opts = {
         signs = {
-            add = { text = "▎" },
-            change = { text = "▎" },
-            delete = { text = "" },
-            topdelete = { text = "" },
-            changedelete = { text = "▎" },
-            untracked = { text = "▎" },
+            add          = { text = icons.BoldLineLeft },
+            change       = { text = icons.BoldLineLeft },
+            changedelete = { text = icons.BoldLineLeft },
+            untracked    = { text = icons.BoldLineLeft },
+            delete       = { text = icons.TriangleShortArrowRight },
+            topdelete    = { text = icons.TriangleShortArrowRight },
         },
         on_attach = function(buffer)
             local gs = package.loaded.gitsigns
