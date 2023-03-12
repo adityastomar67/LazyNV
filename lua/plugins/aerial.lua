@@ -1,22 +1,27 @@
 return {
     "stevearc/aerial.nvim",
-    enabled = vim.g.plugin_enabled.aerial,
-    keys = {
-        {
-            '<leader>a',
-            '<cmd>AerialToggle!<CR>',
-            mode = { "n" },
-            desc = "Aerial Toggle",
-        }
-    },
+    event = "VeryLazy",
     opts = {
-        on_attach = function(bufnr)
-            -- Jump forwards/backwards with '{' and '}'
-            vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
-            vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
-        end
-    },
-    config = function(_, opts)
-        require('aerial').setup(opts)
-    end
-}
+      attach_mode = "global",
+      backends = { "lsp", "treesitter", "markdown", "man" },
+      layout = { min_width = 28 },
+      show_guides = true,
+      filter_kind = false,
+      guides = {
+        mid_item = "├ ",
+        last_item = "└ ",
+        nested_top = "│ ",
+        whitespace = "  ",
+      },
+      keymaps = {
+        ["[y"] = "actions.prev",
+        ["]y"] = "actions.next",
+        ["[Y"] = "actions.prev_up",
+        ["]Y"] = "actions.next_up",
+        ["{"] = false,
+        ["}"] = false,
+        ["[["] = false,
+        ["]]"] = false,
+      },
+    }
+  }
