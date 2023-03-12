@@ -348,9 +348,9 @@ function lspkind.cmp_format(opts)
         end
 
         local function trim(text)
-            local max = 40
+            local max = 45
             if text and text:len() > max then
-                text = text:sub(1, max) .. "󰇘"
+                text = text:sub(1, max) .. " ..."
             end
             return text
         end
