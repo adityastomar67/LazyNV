@@ -1,5 +1,5 @@
-vim.g.plugin_enabled = require("config.user").plugins
 for _, source in ipairs({
+    "config.bootstrap",
     "config.lazy",
     "config.option",
 }) do

@@ -1,6 +1,6 @@
 return {
     "jackMort/ChatGPT.nvim",
-    enabled = vim.g.plugin_enabled.chatgpt,
+    enabled = lazynv.User.plugin_enabled.chatgpt,
     event = "VeryLazy",
     opts = {
         -- welcome_message = WELCOME_MESSAGE, -- set to "" if you don't like the fancy robot

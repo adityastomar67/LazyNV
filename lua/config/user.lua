@@ -1,4 +1,4 @@
-local User                      = {}
+local User = lazynv.User
 
 User.completion                 = true
 User.transparency               = true
@@ -110,4 +110,4 @@ User.ensure_installed_languages = {
     -- "regex",
 }
 
-return User
+-- return User
