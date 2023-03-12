@@ -4,6 +4,7 @@ local CMP          = require("config.user").completion
 local DIAGNOSTIC   = require("config.user").diagnostic
 local Utils        = {}
 
+-- Converts hex code to RGB format
 local function hexToRgb(c)
     c = string.lower(c)
     return { tonumber(c:sub(2, 3), 16), tonumber(c:sub(4, 5), 16), tonumber(c:sub(6, 7), 16) }
@@ -41,8 +42,6 @@ function Utils.set_colorscheme()
         vim.notify("Colorscheme " .. colorscheme .. " not found!\n Setting LazyNV as default colorscheme.")
         vim.cmd [[colorscheme LazyNV]]
         return
-    else
-        vim.notify("Colorscheme set to " .. colorscheme)
     end
 end
 

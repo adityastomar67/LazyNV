@@ -69,9 +69,9 @@ return {
         lsp_client_symbol = "",
         branch_symbol     = " ",
         cool_symbol       = "   ", -- Change this to override default OS icon.
-        null_ls_symbol    = ""    -- A symbol to indicate that a source is coming from null-ls
+        null_ls_symbol    = "",    -- A symbol to indicate that a source is coming from null-ls
         -- fg                = "#0f0f0f",     -- Foreground text color.
-        -- bg                = "#0f0f0f",     -- Default background is transparent.
+        bg                = "#0f0f0f",     -- Default background is transparent.
       },
       mode_colors = {
         n = "#6d92b7",

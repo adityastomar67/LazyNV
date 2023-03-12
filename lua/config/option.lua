@@ -1,44 +1,3 @@
--- OPT.shortmess:append { W = true, I = true, c = true }
--- opt.breakindent = true
--- opt.cmdheight = 1
--- opt.confirm = true
--- opt.expandtab = true
--- opt.foldcolumn = "1" -- '0' is not bad
--- opt.foldenable = true
--- opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
--- opt.foldlevelstart = 99
--- opt.hidden = true
--- opt.ignorecase = true
--- opt.inccommand = "nosplit"
--- opt.joinspaces = false
--- opt.laststatus = 0
--- opt.list = true
--- opt.mouse = "a"
--- opt.number = true
--- opt.pumblend = 10
--- opt.pumheight = 10
--- opt.relativenumber = true
--- opt.scrollback = 100000
--- opt.scrolloff = 8
--- opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
--- opt.shiftround = true
--- opt.shiftwidth = 2
--- opt.showmode = false
--- opt.sidescrolloff = 8
--- opt.signcolumn = "yes"
--- opt.smartcase = true
--- opt.smartindent = true
--- opt.splitbelow = true
--- opt.splitright = true
--- opt.tabstop = 2
--- opt.termguicolors = true
--- opt.timeoutlen = 300
--- opt.title = true
--- opt.undofile = true
--- opt.updatetime = 200
--- opt.wildmode = "longest:full,full"
-
-
 local OPT          = vim.opt
 local O            = vim.o
 local G            = vim.g
@@ -47,6 +6,7 @@ local G            = vim.g
 OPT.backup         = false                     -- creates a backup file
 OPT.icm            = "split"                   -- To create a popup menu for selected search items
 OPT.clipboard      = "unnamedplus"             -- allows neovim to access the system clipboard
+OPT.cmdheight      = 0
 OPT.fileencoding   = "utf-8"                   -- the encoding written to a file
 OPT.ignorecase     = true                      -- ignore case in search patterns
 OPT.mouse          = "a"                       -- allow the mouse to be used in neovim
@@ -179,8 +139,10 @@ require("utils").set_colorscheme()
 vim.cmd [[colorscheme highlights]]
 
 -- Data for limelight_conceal
-vim.cmd [[let g:limelight_conceal_ctermfg = 'gray']]
-vim.cmd [[let g:limelight_conceal_ctermfg = 240]]
-vim.cmd [[let g:limelight_conceal_guifg = 'DarkGray']]
-vim.cmd [[let g:limelight_conceal_guifg = '#777777']]
-vim.cmd [[let g:limelight_default_coefficient = 0.9]]
+if require("utils").has("limelight") then
+    vim.cmd [[let g:limelight_conceal_ctermfg = 'gray']]
+    vim.cmd [[let g:limelight_conceal_ctermfg = 240]]
+    vim.cmd [[let g:limelight_conceal_guifg = 'DarkGray']]
+    vim.cmd [[let g:limelight_conceal_guifg = '#777777']]
+    vim.cmd [[let g:limelight_default_coefficient = 0.9]]
+end
