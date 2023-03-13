@@ -1,7 +1,10 @@
+local USER         = require("config.user")
 local TERMINAL     = require("toggleterm.terminal").Terminal
-local API_KEY_PATH = require("config.user").openai_api_path
-local CMP          = require("config.user").completion
-local DIAGNOSTIC   = require("config.user").diagnostic
+local CMD          = vim.cmd
+local API_KEY_PATH = USER.openai_api_path
+local CMP          = USER.completion
+local DIAGNOSTIC   = USER.diagnostic
+local TRANSPARENCY = USER.transparency
 local Utils        = {}
 
 -- Converts hex code to RGB format
@@ -36,18 +39,18 @@ end
 
 -- Set the colorscheme selected by user
 function Utils.set_colorscheme()
-    local colorscheme = require("config.user").colorscheme
-    local ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+    local colorscheme = USER.colorscheme
+    local ok, _ = pcall(CMD, "colorscheme " .. colorscheme)
     if not ok then
         vim.notify("Colorscheme " .. colorscheme .. " not found!\n Setting LazyNV as default colorscheme.")
-        vim.cmd [[colorscheme LazyNV]]
+        CMD [[colorscheme LazyNV]]
         return
     end
 end
 
 -- For setting the blockwise_clipboard
 function Utils.blockwise_clipboard()
-    vim.cmd("call setreg('+', @+, 'b')")
+    CMD("call setreg('+', @+, 'b')")
     print("set + reg: blockwise!")
 end
 
@@ -185,16 +188,16 @@ function Utils.quit()
             prompt = "You have unsaved changes. Quit anyway? (y/n) "
         }, function(input)
             if input == "y" then
-                vim.cmd "qa!"
+                CMD "qa!"
             end
         end)
     else
-        vim.cmd "qa!"
+        CMD "qa!"
     end
 end
 
 -- Toggle Diagnostics
-Utils.toggle_diagnostics = function()
+function Utils.toggle_diagnostics()
     DIAGNOSTIC = not DIAGNOSTIC
     if DIAGNOSTIC then
         vim.diagnostic.show()
@@ -204,13 +207,36 @@ Utils.toggle_diagnostics = function()
 end
 
 -- Toggle Completions
-Utils.toggle_cmp = function()
+function Utils.toggle_cmp()
     if CMP == true then
-        vim.cmd "lua require('cmp').setup.buffer { enabled = false }"
+        CMD "lua require('cmp').setup.buffer { enabled = false }"
         CMP = not CMP
     else
-        vim.cmd "lua require('cmp').setup.buffer { enabled = true }"
+        CMD "lua require('cmp').setup.buffer { enabled = true }"
         CMP = not CMP
+    end
+end
+
+-- Toggle Transparency
+function Utils.toggle_transparency()
+    if TRANSPARENCY then
+        CMD [[hi Normal guibg=NONE ctermbg=NONE]]
+        CMD [[hi SignColumn guibg=NONE ctermbg=NONE]]
+        CMD [[hi CursorLineNR guibg=NONE ctermbg=NONE]]
+        CMD [[hi StalineFilename guibg=NONE guifg=NONE]]
+        CMD [[hi TodoSignDONE guibg=NONE]]
+        CMD [[hi TodoSignFIX  guibg=NONE]]
+        CMD [[hi TodoSignHACK guibg=NONE]]
+        CMD [[hi TodoSignNOTE guibg=NONE]]
+        CMD [[hi TodoSignPERF guibg=NONE]]
+        CMD [[hi TodoSignTEST guibg=NONE]]
+        CMD [[hi TodoSignTODO guibg=NONE]]
+        CMD [[hi TodoSignWARN guibg=NONE]]
+        CMD [[hi VertSplit guibg=NONE]]
+        TRANSPARENCY = not TRANSPARENCY
+    else
+        CMD [[hi Normal guibg=#0f0f0f ctermbg=NONE]]
+        TRANSPARENCY = not TRANSPARENCY
     end
 end
 

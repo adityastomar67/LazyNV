@@ -95,6 +95,7 @@ return {
                     },
                 },
                 { name = "nvim_lsp",         group_index = 2 },
+                { name = "nvim_lua",},
                 { name = "dynamic",          group_index = 2 },
                 { name = "cmp_tabnine",      group_index = 2 },
                 { name = "cmp_openai_codex", group_index = 2 },
