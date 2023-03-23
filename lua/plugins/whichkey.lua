@@ -15,6 +15,9 @@ return {
         }
         wk.register({
             mode = { "n" },
+            ["="] = { "<cmd>lua vim.lsp.buf.format { async = true }<CR>", "Format Document" },
+            ["_"] = { "<C-w>s", "Split Horizontally" },
+            ["|"] = { "<C-w>v", "Split Vertically" },
             a = {
                 name = "Coding Assistance",
                 a = { "<cmd>ChatGPT<CR>", " ChatGPT" },

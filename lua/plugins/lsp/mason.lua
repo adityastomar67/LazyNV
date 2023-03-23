@@ -7,21 +7,22 @@ return {
     config = function()
         local mason = require("mason")
         mason.setup({
+            ensure_installed = {
+                "html",
+                "pyright",
+                "clangd",
+                "tsserver",
+                -- "jdtls",
+                "emmet_ls",
+                "bashls",
+                "sqlls",
+                "lua_ls",
+                "lua-language-server",
+                "jsonls",
+                "eslint",
+                "tailwindcss",
+            },
             ui = {
-                ensure_installed = {
-                    "html",
-                    "pyright",
-                    "clangd",
-                    "tsserver",
-                    -- "jdtls",
-                    "emmet_ls",
-                    "bashls",
-                    "sqlls",
-                    "lua_ls",
-                    "jsonls",
-                    "eslint",
-                    "tailwindcss",
-                },
                 check_outdated_packages_on_open = true,
                 border = "none",
                 icons = {

@@ -47,10 +47,6 @@ key("n", "<CR>", ":noh<CR><CR>", opts)
 -- Better Redo Option
 key("n", "U", "<C-r>", opts)
 
--- Better Hoping then numerous keystrokes
--- key("n" , "fw"     , ":HopWord<CR>"      , opts)
--- key("n" , "fl"     , ":HopLine<CR>"      , opts)
--- key("i" , "<C-F>"  , "<ESC>:HopLine<CR>" , opts)
 
 -- For not yanking when deleting chars
 key('n', 'x', '"_x', opts)

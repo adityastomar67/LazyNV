@@ -45,7 +45,6 @@ OPT.foldnestmax    = 10
 OPT.foldenable     = false
 OPT.winblend       = 0
 OPT.foldlevel      = 2
-OPT.laststatus     = 3
 OPT.termguicolors  = true
 OPT.formatoptions  = "l"
 OPT.formatoptions  = OPT.formatoptions
