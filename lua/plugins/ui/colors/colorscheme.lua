@@ -53,7 +53,10 @@ return {
         "navarasu/onedark.nvim",
         enabled = vim.g.plugin_enabled.colorscheme.onedark,
         lazy = false,
-        opts = { style = 'darker' },
+        opts = {
+            style = 'darker',
+            transparent = true
+        },
         config = function(_, opts)
             require("onedark").setup(opts)
             require("onedark").load()
