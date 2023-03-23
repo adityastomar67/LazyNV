@@ -110,16 +110,12 @@ key("i", "<C-k>", "<Up>", opts)
 key("v", "<", "<gv", opts)
 key("v", ">", ">gv", opts)
 
--- Move text up and down
--- key("v", "<A-j>", ":m .+1<CR>==", opts)
--- key("v", "<A-k>", ":m .-2<CR>==", opts)
+-- d
 key("v", "p", '"_dP', opts)
 
 -- Move text up and down
 key("x", "J", ":move '>+1<CR>gv-gv", opts)
 key("x", "K", ":move '<-2<CR>gv-gv", opts)
--- key("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
--- key("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 
 -- Better terminal navigation
 key("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
