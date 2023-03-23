@@ -18,3 +18,6 @@ vim.api.nvim_create_autocmd("User", {
         require "config.keymap"
     end,
 })
+
+-- NOTE: work on toggler keybindings, i.e not working
+-- NOTE: work on cmp menu, make it like NvChad

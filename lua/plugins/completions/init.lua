@@ -1,7 +1,7 @@
 return {
     "hrsh7th/nvim-cmp",
     enabled = vim.g.plugin_enabled.nvim_cmp,
-    event = "VeryLazy",
+    event = "InsertEnter",
     dependencies = {
         "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-buffer",
@@ -14,6 +14,88 @@ return {
         "notomo/cmp-neosnippet",
         "alpha2phi/cmp-openai-codex",
         "kristijanhusak/vim-dadbod-completion",
+        {
+            "L3MON4D3/LuaSnip",
+            dependencies = {
+                "adityastomar67/friendly-snippets",
+                config = function()
+                    require("luasnip.loaders.from_vscode").lazy_load()
+                end,
+            },
+            keys = {
+                {
+                    "<a-k>",
+                    function()
+                        if require("luasnip").jumpable(-1) then
+                            require("luasnip").jump(-1)
+                        end
+                    end,
+                    mode = { "i", "s" },
+                    silent = true
+                },
+                {
+                    "<a-j>",
+                    function()
+                        if require("luasnip").jumpable(1) then
+                            require("luasnip").jump(1)
+                        end
+                    end,
+                    mode = { "i", "s" },
+                    silent = true
+                },
+                {
+                    "<a-l>",
+                    function()
+                        if require("luasnip").choice_active() then
+                            require("luasnip").change_choice(1)
+                        end
+                    end,
+                    mode = { "i", "s" }
+                },
+                {
+                    "<a-h>",
+                    function()
+                        if require("luasnip").choice_active() then
+                            require("luasnip").change_choice(-1)
+                        end
+                    end,
+                    mode = { "i", "s" }
+                }
+            },
+            config = function()
+                local snippets_folder = vim.fn.stdpath "config" .. "/lua/plugins/completions/snippets/"
+
+                vim.api.nvim_create_user_command("LuaSnipEdit", function()
+                    require("luasnip.loaders.from_lua").edit_snippet_files()
+                end, {})
+
+                local types = require "luasnip.util.types"
+                local options = {
+                    history = true,            -- keep around last snippet local to jump back
+                    updateevents = "TextChanged,TextChangedI", -- update changes as you type
+                    enable_autosnippets = true,
+                    ext_opts = {
+                        [types.choiceNode] = { active = { virt_text = { { "  ●" } } } },
+                    },
+                }
+
+                require("luasnip").config.set_config(options)
+
+                require("luasnip.loaders.from_lua").lazy_load { paths = snippets_folder or "" }
+                require("luasnip.loaders.from_vscode").lazy_load()
+
+                vim.api.nvim_create_autocmd("InsertLeave", {
+                    callback = function()
+                        if
+                            require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+                            and not require("luasnip").session.jump_active
+                        then
+                            require("luasnip").unlink_current()
+                        end
+                    end,
+                })
+            end,
+        },
     },
     config = function()
         local cmp = require "cmp"
