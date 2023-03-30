@@ -1,3 +1,6 @@
+-- For User plugins configs
+vim.g.plugin_enabled = require("config.user").plugins
+
 --- Install lazy.nvim
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -122,6 +125,3 @@ lazy.setup {
 
 -- Keymap for launching Lazy instantly
 vim.keymap.set("n", "<leader>zz", "<cmd>:Lazy<cr>", { desc = "Manage Plugins" })
-
--- For User plugins configs
-vim.g.plugin_enabled = require("config.user").plugins
