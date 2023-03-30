@@ -406,4 +406,61 @@ COLOR.colorschemes["schemer-medium"] = {
   base0F = "#a06949",
 }
 
+COLOR.rgb2hex = function(r, g, b)
+  return string.format("#%02x%02x%02x", math.floor(r), math.floor(g), math.floor(b))
+end
+
+COLOR.hsl2rgb_helper = function(p, q, a)
+  if a < 0 then
+    a = a + 6
+  end
+  if a >= 6 then
+    a = a - 6
+  end
+  if a < 1 then
+    return (q - p) * a + p
+  elseif a < 3 then
+    return q
+  elseif a < 4 then
+    return (q - p) * (4 - a) + p
+  else
+    return p
+  end
+end
+
+COLOR.hsl2rgb = function(h, s, l)
+  local t1, t2, r, g, b
+
+  h = h / 60
+  if l <= 0.5 then
+    t2 = l * (s + 1)
+  else
+    t2 = l + s - (l * s)
+  end
+
+  t1 = l * 2 - t2
+  r = COLOR.hsl2rgb_helper(t1, t2, h + 2) * 255
+  g = COLOR.hsl2rgb_helper(t1, t2, h) * 255
+  b = COLOR.hsl2rgb_helper(t1, t2, h - 2) * 255
+
+  return r, g, b
+end
+
+COLOR.hsl2hex = function(h, s, l)
+  local r, g, b = COLOR.hsl2rgb(h, s, l)
+  return COLOR.rgb2hex(r, g, b)
+end
+
+COLOR.change_hex_lightness = function(hex, percent)
+  local h, s, l = COLOR.hex2hsl(hex)
+  l = l + (percent / 100)
+  if l > 1 then
+    l = 1
+  end
+  if l < 0 then
+    l = 0
+  end
+  return COLOR.hsl2hex(h, s, l)
+end
+
 return COLOR

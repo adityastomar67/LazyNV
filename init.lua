@@ -19,5 +19,4 @@ vim.api.nvim_create_autocmd("User", {
     end,
 })
 
--- NOTE: work on toggler keybindings, i.e not working
 -- NOTE: work on cmp menu, make it like NvChad
