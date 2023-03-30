@@ -23,9 +23,10 @@ local Theme = function()
         GitSignsDeleteNr = { fg = '#d96c75', bg = "NONE" },
         GitSignsDeleteLn = { fg = '#d96c75', bg = "NONE" },
     }
-    return vim.tbl_extend('error',
-        gitsigns
-    )
+    -- return vim.tbl_extend('error',
+    --     gitsigns
+    -- )
+    return gitsigns
 end
 
 local function highlight(group, color)
