@@ -1,7 +1,7 @@
 local colors = {
     white = "#abb2bf",
     darker_black = "#1b1f27",
-    black = "#1e222a", --  nvim bg
+    black = "#1e222a",  --  nvim bg
     black2 = "#252931",
     one_bg = "#282c34", -- real bg of onedark
     one_bg2 = "#353b45",
@@ -56,6 +56,8 @@ local hlgroups = {
 local styles = {
     borderless = {
         TelescopeBorder = { fg = colors.darker_black, bg = colors.darker_black },
+        TelescopePreviewBorder = { fg = colors.darker_black, bg = colors.darker_black },
+        TelescopeResultsBorder = { fg = colors.darker_black, bg = colors.darker_black },
         TelescopePromptBorder = { fg = colors.black2, bg = colors.black2 },
         TelescopePromptNormal = { fg = colors.white, bg = colors.black2 },
         TelescopeResultsTitle = { fg = colors.darker_black, bg = colors.darker_black },

@@ -97,17 +97,16 @@ local function apply()
                 for group, color in pairs(Theme()) do
                     highlight(group, color)
                 end
+                set_hl(0, "DiagnosticVirtualTextError", { bg = "NONE", fg = util.blend("#db4b4b", "#00db4b4b", alpha) })
+                set_hl(0, "DiagnosticVirtualTextWarn" , { bg = "NONE", fg = util.blend("#e0af68", "#00e0af68", alpha) })
+                set_hl(0, "DiagnosticVirtualTextInfo" , { bg = "NONE", fg = util.blend("#0db9d7", "#000db9d7", alpha) })
+                set_hl(0, "DiagnosticVirtualTextHint" , { bg = "NONE", fg = util.blend("#10B981", "#0010B981", alpha) })
+                set_hl(0, "MsgSeparator"              , { bg = "NONE", fg = "NONE" })
                 async:close()
             end
         )
     )
-    set_hl(0, "DiagnosticVirtualTextError", { bg = "NONE", fg = util.blend("#db4b4b", "#00db4b4b", alpha) })
-    set_hl(0, "DiagnosticVirtualTextWarn" , { bg = "NONE", fg = util.blend("#e0af68", "#00e0af68", alpha) })
-    set_hl(0, "DiagnosticVirtualTextInfo" , { bg = "NONE", fg = util.blend("#0db9d7", "#000db9d7", alpha) })
-    set_hl(0, "DiagnosticVirtualTextHint" , { bg = "NONE", fg = util.blend("#10B981", "#0010B981", alpha) })
-
     async:send()
 end
-
 
 return apply()
