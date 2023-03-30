@@ -521,4 +521,18 @@ COLOR.change_hex_lightness = function(hex, percent)
   return COLOR.hsl2hex(h, s, l)
 end
 
+-- To blend colors and play with transparency
+COLOR.blend = function(foreground, background, alpha)
+    alpha = type(alpha) == "string" and (tonumber(alpha, 16) / 0xff) or alpha
+    local bg = COLOR.hexToRgb(background)
+    local fg = COLOR.hexToRgb(foreground)
+
+    local blendChannel = function(i)
+        local ret = (alpha * fg[i] + ((1 - alpha) * bg[i]))
+        return math.floor(math.min(math.max(0, ret), 255) + 0.5)
+    end
+
+    return string.format("#%02x%02x%02x", blendChannel(1), blendChannel(2), blendChannel(3))
+end
+
 return COLOR

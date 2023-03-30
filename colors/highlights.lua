@@ -1,5 +1,5 @@
 local alpha = 0.4
-local util = require("utils")
+local blend = require("utils.colorset").blend
 local set_hl = vim.api.nvim_set_hl
 
 local Theme = function()
@@ -97,10 +97,10 @@ local function apply()
                 for group, color in pairs(Theme()) do
                     highlight(group, color)
                 end
-                set_hl(0, "DiagnosticVirtualTextError", { bg = "NONE", fg = util.blend("#db4b4b", "#00db4b4b", alpha) })
-                set_hl(0, "DiagnosticVirtualTextWarn" , { bg = "NONE", fg = util.blend("#e0af68", "#00e0af68", alpha) })
-                set_hl(0, "DiagnosticVirtualTextInfo" , { bg = "NONE", fg = util.blend("#0db9d7", "#000db9d7", alpha) })
-                set_hl(0, "DiagnosticVirtualTextHint" , { bg = "NONE", fg = util.blend("#10B981", "#0010B981", alpha) })
+                set_hl(0, "DiagnosticVirtualTextError", { bg = "NONE", fg = blend("#db4b4b", "#00db4b4b", alpha) })
+                set_hl(0, "DiagnosticVirtualTextWarn" , { bg = "NONE", fg = blend("#e0af68", "#00e0af68", alpha) })
+                set_hl(0, "DiagnosticVirtualTextInfo" , { bg = "NONE", fg = blend("#0db9d7", "#000db9d7", alpha) })
+                set_hl(0, "DiagnosticVirtualTextHint" , { bg = "NONE", fg = blend("#10B981", "#0010B981", alpha) })
                 set_hl(0, "MsgSeparator"              , { bg = "NONE", fg = "NONE" })
                 async:close()
             end

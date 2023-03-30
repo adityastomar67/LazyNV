@@ -1,3 +1,6 @@
+local alpha = 0.4
+local blend = require("utils.colorset").blend
+
 local base16 = {
     base00 = "#1e222a",
     base01 = "#353b45",
@@ -110,8 +113,9 @@ local styles = {
         CmpPmenu = {
             bg = colors.black2,
         },
-        CmpDoc = { bg = colors.darker_black },
-        CmpDocBorder = { fg = colors.darker_black, bg = colors.darker_black },
+        CmpDoc = { bg = blend(colors.darker_black, "#001b1f27", alpha) },
+        CmpDocBorder = { fg = blend(colors.darker_black, "#001b1f27", alpha),
+            bg = blend(colors.darker_black, "#001b1f27", alpha) },
     },
     flat_light = {
         CmpPmenu = {
