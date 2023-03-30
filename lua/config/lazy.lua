@@ -122,3 +122,6 @@ lazy.setup {
 
 -- Keymap for launching Lazy instantly
 vim.keymap.set("n", "<leader>zz", "<cmd>:Lazy<cr>", { desc = "Manage Plugins" })
+
+-- For User plugins configs
+vim.g.plugin_enabled = require("config.user").plugins

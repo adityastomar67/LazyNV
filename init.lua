@@ -1,6 +1,4 @@
-vim.g.plugin_enabled = require("config.user").plugins
 for _, source in ipairs({
-    "config.bootstrap",
     "config.lazy",
     "config.option",
 }) do
@@ -18,5 +16,3 @@ vim.api.nvim_create_autocmd("User", {
         require "config.keymap"
     end,
 })
-
--- NOTE: work on cmp menu, make it like NvChad
