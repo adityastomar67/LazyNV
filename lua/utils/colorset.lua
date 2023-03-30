@@ -524,8 +524,8 @@ end
 -- To blend colors and play with transparency
 COLOR.blend = function(foreground, background, alpha)
     alpha = type(alpha) == "string" and (tonumber(alpha, 16) / 0xff) or alpha
-    local bg = COLOR.hexToRgb(background)
-    local fg = COLOR.hexToRgb(foreground)
+    local bg = COLOR.hex2Rgb(background)
+    local fg = COLOR.hex2Rgb(foreground)
 
     local blendChannel = function(i)
         local ret = (alpha * fg[i] + ((1 - alpha) * bg[i]))
