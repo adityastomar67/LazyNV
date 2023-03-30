@@ -56,7 +56,7 @@ COLOR.highlight = setmetatable({}, {
     local cmd = { "hi", hlgroup }
     if guifg then table.insert(cmd, "guifg=" .. guifg) end
     if guibg then table.insert(cmd, "guibg=" .. guibg) end
-    if gui   then table.insert(cmd, "gui=" .. gui)     end
+    if gui then table.insert(cmd, "gui=" .. gui) end
     if guisp then table.insert(cmd, "guisp=" .. guisp) end
     vim.cmd(table.concat(cmd, " "))
   end,
@@ -81,9 +81,10 @@ function COLOR.setup(colors, config)
   vim.cmd "set termguicolors"
   vim.cmd [[ highlight clear ]]
 
-  COLOR.colors = colors or COLOR.colorschemes[vim.env.BASE16_THEME] or COLOR.colorschemes["schemer-dark"]
-  local hi = COLOR.highlight
-  
+  COLOR.colors                          = colors or COLOR.colorschemes[vim.env.BASE16_THEME] or
+      COLOR.colorschemes["schemer-dark"]
+  local hi                              = COLOR.highlight
+
   -- Vim editor colors
   hi.Bold                               = { guifg = nil, guibg = nil, gui = "bold", guisp = nil }
   hi.Italic                             = { guifg = nil, guibg = nil, gui = "none", guisp = nil }
@@ -107,29 +108,139 @@ function COLOR.setup(colors, config)
   hi.CursorLine                         = { guifg = nil, guibg = COLOR.colors.base01, gui = "none", guisp = nil }
   hi.QuickFixLine                       = { guifg = nil, guibg = COLOR.colors.base01, gui = "none", guisp = nil }
   hi.Title                              = { guifg = COLOR.colors.base0D, guibg = nil, gui = "none", guisp = nil }
-  hi.Normal                             = { guifg = COLOR.colors.base05, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.Error                              = { guifg = COLOR.colors.base00, guibg = COLOR.colors.base08, gui = nil, guisp = nil }
-  hi.ErrorMsg                           = { guifg = COLOR.colors.base08, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.FoldColumn                         = { guifg = COLOR.colors.base0C, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.Folded                             = { guifg = COLOR.colors.base03, guibg = COLOR.colors.base01, gui = nil, guisp = nil }
-  hi.Search                             = { guifg = COLOR.colors.base01, guibg = COLOR.colors.base0A, gui = nil, guisp = nil }
-  hi.WildMenu                           = { guifg = COLOR.colors.base08, guibg = COLOR.colors.base0A, gui = nil, guisp = nil }
-  hi.Conceal                            = { guifg = COLOR.colors.base0D, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.Cursor                             = { guifg = COLOR.colors.base00, guibg = COLOR.colors.base05, gui = nil, guisp = nil }
-  hi.LineNr                             = { guifg = COLOR.colors.base04, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.SignColumn                         = { guifg = COLOR.colors.base04, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.CursorLineNr                       = { guifg = COLOR.colors.base04, guibg = COLOR.colors.base01, gui = nil, guisp = nil }
-  hi.PMenuSel                           = { guifg = COLOR.colors.base01, guibg = COLOR.colors.base05, gui = nil, guisp = nil }
-  hi.IncSearch                          = { guifg = COLOR.colors.base01, guibg = COLOR.colors.base09, gui = "none", guisp = nil }
-  hi.Substitute                         = { guifg = COLOR.colors.base01, guibg = COLOR.colors.base0A, gui = "none", guisp = nil }
-  hi.StatusLine                         = { guifg = COLOR.colors.base05, guibg = COLOR.colors.base02, gui = "none", guisp = nil }
-  hi.StatusLineNC                       = { guifg = COLOR.colors.base04, guibg = COLOR.colors.base01, gui = "none", guisp = nil }
-  hi.VertSplit                          = { guifg = COLOR.colors.base05, guibg = COLOR.colors.base00, gui = "none", guisp = nil }
-  hi.PMenu                              = { guifg = COLOR.colors.base05, guibg = COLOR.colors.base01, gui = "none", guisp = nil }
-  hi.TabLine                            = { guifg = COLOR.colors.base03, guibg = COLOR.colors.base01, gui = "none", guisp = nil }
-  hi.TabLineFill                        = { guifg = COLOR.colors.base03, guibg = COLOR.colors.base01, gui = "none", guisp = nil }
-  hi.TabLineSel                         = { guifg = COLOR.colors.base0B, guibg = COLOR.colors.base01, gui = "none", guisp = nil }
-  
+  hi.Normal                             = {
+    guifg = COLOR.colors.base05,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.Error                              = {
+    guifg = COLOR.colors.base00,
+    guibg = COLOR.colors.base08,
+    gui = nil,
+    guisp = nil
+  }
+  hi.ErrorMsg                           = {
+    guifg = COLOR.colors.base08,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.FoldColumn                         = {
+    guifg = COLOR.colors.base0C,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.Folded                             = {
+    guifg = COLOR.colors.base03,
+    guibg = COLOR.colors.base01,
+    gui = nil,
+    guisp = nil
+  }
+  hi.Search                             = {
+    guifg = COLOR.colors.base01,
+    guibg = COLOR.colors.base0A,
+    gui = nil,
+    guisp = nil
+  }
+  hi.WildMenu                           = {
+    guifg = COLOR.colors.base08,
+    guibg = COLOR.colors.base0A,
+    gui = nil,
+    guisp = nil
+  }
+  hi.Conceal                            = {
+    guifg = COLOR.colors.base0D,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.Cursor                             = {
+    guifg = COLOR.colors.base00,
+    guibg = COLOR.colors.base05,
+    gui = nil,
+    guisp = nil
+  }
+  hi.LineNr                             = {
+    guifg = COLOR.colors.base04,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.SignColumn                         = {
+    guifg = COLOR.colors.base04,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.CursorLineNr                       = {
+    guifg = COLOR.colors.base04,
+    guibg = COLOR.colors.base01,
+    gui = nil,
+    guisp = nil
+  }
+  hi.PMenuSel                           = {
+    guifg = COLOR.colors.base01,
+    guibg = COLOR.colors.base05,
+    gui = nil,
+    guisp = nil
+  }
+  hi.IncSearch                          = {
+    guifg = COLOR.colors.base01,
+    guibg = COLOR.colors.base09,
+    gui = "none",
+    guisp = nil
+  }
+  hi.Substitute                         = {
+    guifg = COLOR.colors.base01,
+    guibg = COLOR.colors.base0A,
+    gui = "none",
+    guisp = nil
+  }
+  hi.StatusLine                         = {
+    guifg = COLOR.colors.base05,
+    guibg = COLOR.colors.base02,
+    gui = "none",
+    guisp = nil
+  }
+  hi.StatusLineNC                       = {
+    guifg = COLOR.colors.base04,
+    guibg = COLOR.colors.base01,
+    gui = "none",
+    guisp = nil
+  }
+  hi.VertSplit                          = {
+    guifg = COLOR.colors.base05,
+    guibg = COLOR.colors.base00,
+    gui = "none",
+    guisp = nil
+  }
+  hi.PMenu                              = {
+    guifg = COLOR.colors.base05,
+    guibg = COLOR.colors.base01,
+    gui = "none",
+    guisp = nil
+  }
+  hi.TabLine                            = {
+    guifg = COLOR.colors.base03,
+    guibg = COLOR.colors.base01,
+    gui = "none",
+    guisp = nil
+  }
+  hi.TabLineFill                        = {
+    guifg = COLOR.colors.base03,
+    guibg = COLOR.colors.base01,
+    gui = "none",
+    guisp = nil
+  }
+  hi.TabLineSel                         = {
+    guifg = COLOR.colors.base0B,
+    guibg = COLOR.colors.base01,
+    gui = "none",
+    guisp = nil
+  }
+
   -- Standard syntax highlighting
   hi.Boolean                            = { guifg = COLOR.colors.base09, guibg = nil, gui = nil, guisp = nil }
   hi.Character                          = { guifg = COLOR.colors.base08, guibg = nil, gui = nil, guisp = nil }
@@ -157,18 +268,68 @@ function COLOR.setup(colors, config)
   hi.Define                             = { guifg = COLOR.colors.base0E, guibg = nil, gui = "none", guisp = nil }
   hi.Operator                           = { guifg = COLOR.colors.base05, guibg = nil, gui = "none", guisp = nil }
   hi.Type                               = { guifg = COLOR.colors.base0A, guibg = nil, gui = "none", guisp = nil }
-  hi.Todo                               = { guifg = COLOR.colors.base0A, guibg = COLOR.colors.base01, gui = nil, guisp = nil }
+  hi.Todo                               = {
+    guifg = COLOR.colors.base0A,
+    guibg = COLOR.colors.base01,
+    gui = nil,
+    guisp = nil
+  }
 
   -- Diff highlighting
-  hi.DiffAdd                            = { guifg = COLOR.colors.base0B, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.DiffChange                         = { guifg = COLOR.colors.base03, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.DiffDelete                         = { guifg = COLOR.colors.base08, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.DiffText                           = { guifg = COLOR.colors.base0D, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.DiffAdded                          = { guifg = COLOR.colors.base0B, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.DiffFile                           = { guifg = COLOR.colors.base08, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.DiffNewFile                        = { guifg = COLOR.colors.base0B, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.DiffLine                           = { guifg = COLOR.colors.base0D, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.DiffRemoved                        = { guifg = COLOR.colors.base08, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
+  hi.DiffAdd                            = {
+    guifg = COLOR.colors.base0B,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.DiffChange                         = {
+    guifg = COLOR.colors.base03,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.DiffDelete                         = {
+    guifg = COLOR.colors.base08,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.DiffText                           = {
+    guifg = COLOR.colors.base0D,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.DiffAdded                          = {
+    guifg = COLOR.colors.base0B,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.DiffFile                           = {
+    guifg = COLOR.colors.base08,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.DiffNewFile                        = {
+    guifg = COLOR.colors.base0B,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.DiffLine                           = {
+    guifg = COLOR.colors.base0D,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.DiffRemoved                        = {
+    guifg = COLOR.colors.base08,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
 
   -- Git highlighting
   hi.gitcommitOverflow                  = { guifg = COLOR.colors.base08, guibg = nil, gui = nil, guisp = nil }
@@ -188,10 +349,30 @@ function COLOR.setup(colors, config)
   hi.gitcommitSelectedFile              = { guifg = COLOR.colors.base0B, guibg = nil, gui = "bold", guisp = nil }
 
   -- GitGutter highlighting
-  hi.GitGutterAdd                       = { guifg = COLOR.colors.base0B, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.GitGutterChange                    = { guifg = COLOR.colors.base0D, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.GitGutterDelete                    = { guifg = COLOR.colors.base08, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.GitGutterChangeDelete              = { guifg = COLOR.colors.base0E, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
+  hi.GitGutterAdd                       = {
+    guifg = COLOR.colors.base0B,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.GitGutterChange                    = {
+    guifg = COLOR.colors.base0D,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.GitGutterDelete                    = {
+    guifg = COLOR.colors.base08,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.GitGutterChangeDelete              = {
+    guifg = COLOR.colors.base0E,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
 
   -- Spelling highlighting
   hi.SpellBad                           = { guifg = nil, guibg = nil, gui = "undercurl", guisp = COLOR.colors.base08 }
@@ -220,7 +401,7 @@ function COLOR.setup(colors, config)
   hi.LspDiagnosticsUnderlineWarning     = "DiagnosticUnderlineWarning"
   hi.LspDiagnosticsUnderlineInformation = "DiagnosticUnderlineInformation"
   hi.LspDiagnosticsUnderlineHint        = "DiagnosticUnderlineHint"
-  
+
   hi.TSCurrentScope                     = { guifg = nil, guibg = nil, gui = "bold", guisp = nil }
   hi.TSStrong                           = { guifg = nil, guibg = nil, gui = "bold", guisp = nil }
   hi.TSAnnotation                       = { guifg = COLOR.colors.base0F, guibg = nil, gui = "none", guisp = nil }
@@ -277,23 +458,98 @@ function COLOR.setup(colors, config)
   hi.TSDefinitionUsage                  = { guifg = nil, guibg = nil, gui = "underline", guisp = COLOR.colors.base04 }
   hi.TSStrike                           = { guifg = COLOR.colors.base00, guibg = nil, gui = "strikethrough", guisp = nil }
 
-  hi.NvimInternalError                  = { guifg = COLOR.colors.base00, guibg = COLOR.colors.base08, gui = "none", guisp = nil }
+  hi.NvimInternalError                  = {
+    guifg = COLOR.colors.base00,
+    guibg = COLOR.colors.base08,
+    gui = "none",
+    guisp = nil
+  }
 
-  hi.NormalFloat                        = { guifg = COLOR.colors.base05, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.FloatBorder                        = { guifg = COLOR.colors.base05, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.NormalNC                           = { guifg = COLOR.colors.base05, guibg = COLOR.colors.base00, gui = nil, guisp = nil }
-  hi.TermCursorNC                       = { guifg = COLOR.colors.base00, guibg = COLOR.colors.base05, gui = nil, guisp = nil }
-  hi.TermCursor                         = { guifg = COLOR.colors.base00, guibg = COLOR.colors.base05, gui = "none", guisp = nil }
+  hi.NormalFloat                        = {
+    guifg = COLOR.colors.base05,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.FloatBorder                        = {
+    guifg = COLOR.colors.base05,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.NormalNC                           = {
+    guifg = COLOR.colors.base05,
+    guibg = COLOR.colors.base00,
+    gui = nil,
+    guisp = nil
+  }
+  hi.TermCursorNC                       = {
+    guifg = COLOR.colors.base00,
+    guibg = COLOR.colors.base05,
+    gui = nil,
+    guisp = nil
+  }
+  hi.TermCursor                         = {
+    guifg = COLOR.colors.base00,
+    guibg = COLOR.colors.base05,
+    gui = "none",
+    guisp = nil
+  }
 
-  hi.User1                              = { guifg = COLOR.colors.base08, guibg = COLOR.colors.base02, gui = "none", guisp = nil }
-  hi.User2                              = { guifg = COLOR.colors.base0E, guibg = COLOR.colors.base02, gui = "none", guisp = nil }
-  hi.User3                              = { guifg = COLOR.colors.base05, guibg = COLOR.colors.base02, gui = "none", guisp = nil }
-  hi.User4                              = { guifg = COLOR.colors.base0C, guibg = COLOR.colors.base02, gui = "none", guisp = nil }
-  hi.User5                              = { guifg = COLOR.colors.base01, guibg = COLOR.colors.base02, gui = "none", guisp = nil }
-  hi.User6                              = { guifg = COLOR.colors.base05, guibg = COLOR.colors.base02, gui = "none", guisp = nil }
-  hi.User7                              = { guifg = COLOR.colors.base05, guibg = COLOR.colors.base02, gui = "none", guisp = nil }
-  hi.User8                              = { guifg = COLOR.colors.base00, guibg = COLOR.colors.base02, gui = "none", guisp = nil }
-  hi.User9                              = { guifg = COLOR.colors.base00, guibg = COLOR.colors.base02, gui = "none", guisp = nil }
+  hi.User1                              = {
+    guifg = COLOR.colors.base08,
+    guibg = COLOR.colors.base02,
+    gui = "none",
+    guisp = nil
+  }
+  hi.User2                              = {
+    guifg = COLOR.colors.base0E,
+    guibg = COLOR.colors.base02,
+    gui = "none",
+    guisp = nil
+  }
+  hi.User3                              = {
+    guifg = COLOR.colors.base05,
+    guibg = COLOR.colors.base02,
+    gui = "none",
+    guisp = nil
+  }
+  hi.User4                              = {
+    guifg = COLOR.colors.base0C,
+    guibg = COLOR.colors.base02,
+    gui = "none",
+    guisp = nil
+  }
+  hi.User5                              = {
+    guifg = COLOR.colors.base01,
+    guibg = COLOR.colors.base02,
+    gui = "none",
+    guisp = nil
+  }
+  hi.User6                              = {
+    guifg = COLOR.colors.base05,
+    guibg = COLOR.colors.base02,
+    gui = "none",
+    guisp = nil
+  }
+  hi.User7                              = {
+    guifg = COLOR.colors.base05,
+    guibg = COLOR.colors.base02,
+    gui = "none",
+    guisp = nil
+  }
+  hi.User8                              = {
+    guifg = COLOR.colors.base00,
+    guibg = COLOR.colors.base02,
+    gui = "none",
+    guisp = nil
+  }
+  hi.User9                              = {
+    guifg = COLOR.colors.base00,
+    guibg = COLOR.colors.base02,
+    gui = "none",
+    guisp = nil
+  }
 
   hi.TreesitterContext                  = { guifg = nil, guibg = COLOR.colors.base01, gui = "italic", guisp = nil }
 
@@ -304,15 +560,15 @@ function COLOR.setup(colors, config)
       local darkerbg           = darken(COLOR.colors.base00, 0.1)
       local darkercursorline   = darken(COLOR.colors.base01, 0.1)
       local darkerstatusline   = darken(COLOR.colors.base02, 0.1)
-      hi.TelescopeNormal       = { guifg = nil,                 guibg = darkerbg,            gui = nil, guisp = nil }
-      hi.TelescopeSelection    = { guifg = nil,                 guibg = darkerstatusline,    gui = nil, guisp = nil }
-      hi.TelescopeBorder       = { guifg = darkerbg,            guibg = darkerbg,            gui = nil, guisp = nil }
-      hi.TelescopePromptBorder = { guifg = darkerstatusline,    guibg = darkerstatusline,    gui = nil, guisp = nil }
-      hi.TelescopePromptNormal = { guifg = COLOR.colors.base05, guibg = darkerstatusline,    gui = nil, guisp = nil }
-      hi.TelescopePromptPrefix = { guifg = COLOR.colors.base08, guibg = darkerstatusline,    gui = nil, guisp = nil }
-      hi.TelescopePreviewTitle = { guifg = darkercursorline,    guibg = COLOR.colors.base0B, gui = nil, guisp = nil }
-      hi.TelescopePromptTitle  = { guifg = darkercursorline,    guibg = COLOR.colors.base08, gui = nil, guisp = nil }
-      hi.TelescopeResultsTitle = { guifg = darkerbg,            guibg = darkerbg,            gui = nil, guisp = nil }
+      hi.TelescopeNormal       = { guifg = nil, guibg = darkerbg, gui = nil, guisp = nil }
+      hi.TelescopeSelection    = { guifg = nil, guibg = darkerstatusline, gui = nil, guisp = nil }
+      hi.TelescopeBorder       = { guifg = darkerbg, guibg = darkerbg, gui = nil, guisp = nil }
+      hi.TelescopePromptBorder = { guifg = darkerstatusline, guibg = darkerstatusline, gui = nil, guisp = nil }
+      hi.TelescopePromptNormal = { guifg = COLOR.colors.base05, guibg = darkerstatusline, gui = nil, guisp = nil }
+      hi.TelescopePromptPrefix = { guifg = COLOR.colors.base08, guibg = darkerstatusline, gui = nil, guisp = nil }
+      hi.TelescopePreviewTitle = { guifg = darkercursorline, guibg = COLOR.colors.base0B, gui = nil, guisp = nil }
+      hi.TelescopePromptTitle  = { guifg = darkercursorline, guibg = COLOR.colors.base08, gui = nil, guisp = nil }
+      hi.TelescopeResultsTitle = { guifg = darkerbg, guibg = darkerbg, gui = nil, guisp = nil }
     end
   end
 
@@ -523,16 +779,16 @@ end
 
 -- To blend colors and play with transparency
 COLOR.blend = function(foreground, background, alpha)
-    alpha = type(alpha) == "string" and (tonumber(alpha, 16) / 0xff) or alpha
-    local bg = COLOR.hex2Rgb(background)
-    local fg = COLOR.hex2Rgb(foreground)
+  alpha = type(alpha) == "string" and (tonumber(alpha, 16) / 0xff) or alpha
+  local bg = COLOR.hex2rgb(background)
+  local fg = COLOR.hex2rgb(foreground)
 
-    local blendChannel = function(i)
-        local ret = (alpha * fg[i] + ((1 - alpha) * bg[i]))
-        return math.floor(math.min(math.max(0, ret), 255) + 0.5)
-    end
+  local blendChannel = function(i)
+    local ret = (alpha * fg[i] + ((1 - alpha) * bg[i]))
+    return math.floor(math.min(math.max(0, ret), 255) + 0.5)
+  end
 
-    return string.format("#%02x%02x%02x", blendChannel(1), blendChannel(2), blendChannel(3))
+  return string.format("#%02x%02x%02x", blendChannel(1), blendChannel(2), blendChannel(3))
 end
 
 return COLOR
