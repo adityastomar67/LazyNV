@@ -684,6 +684,11 @@ COLOR.hsl2rgb_helper = function(p, q, a)
   end
 end
 
+local function hexToRgb(c)
+  c = string.lower(c)
+  return { tonumber(c:sub(2, 3), 16), tonumber(c:sub(4, 5), 16), tonumber(c:sub(6, 7), 16) }
+end
+
 COLOR.hex2rgb = function(hex)
   local hash = string.sub(hex, 1, 1) == "#"
   if string.len(hex) ~= (7 - (hash and 0 or 1)) then
@@ -780,8 +785,8 @@ end
 -- To blend colors and play with transparency
 COLOR.blend = function(foreground, background, alpha)
   alpha = type(alpha) == "string" and (tonumber(alpha, 16) / 0xff) or alpha
-  local bg = COLOR.hex2rgb(background)
-  local fg = COLOR.hex2rgb(foreground)
+  local bg = hexToRgb(background)
+  local fg = hexToRgb(foreground)
 
   local blendChannel = function(i)
     local ret = (alpha * fg[i] + ((1 - alpha) * bg[i]))
