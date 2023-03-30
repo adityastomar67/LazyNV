@@ -428,6 +428,64 @@ COLOR.hsl2rgb_helper = function(p, q, a)
   end
 end
 
+COLOR.hex2rgb = function(hex)
+  local hash = string.sub(hex, 1, 1) == "#"
+  if string.len(hex) ~= (7 - (hash and 0 or 1)) then
+    return nil
+  end
+
+  local r = tonumber(hex:sub(2 - (hash and 0 or 1), 3 - (hash and 0 or 1)), 16)
+  local g = tonumber(hex:sub(4 - (hash and 0 or 1), 5 - (hash and 0 or 1)), 16)
+  local b = tonumber(hex:sub(6 - (hash and 0 or 1), 7 - (hash and 0 or 1)), 16)
+  return r, g, b
+end
+
+COLOR.rgb2hsl = function(r, g, b)
+  local min, max, l, s, maxcolor, h
+  r, g, b = r / 255, g / 255, b / 255
+
+  min = math.min(r, g, b)
+  max = math.max(r, g, b)
+  maxcolor = 1 + (max == b and 2 or (max == g and 1 or 0))
+
+  if maxcolor == 1 then
+    h = (g - b) / (max - min)
+  elseif maxcolor == 2 then
+    h = 2 + (b - r) / (max - min)
+  elseif maxcolor == 3 then
+    h = 4 + (r - g) / (max - min)
+  end
+
+  if not rawequal(type(h), "number") then
+    h = 0
+  end
+
+  h = h * 60
+
+  if h < 0 then
+    h = h + 360
+  end
+
+  l = (min + max) / 2
+
+  if min == max then
+    s = 0
+  else
+    if l < 0.5 then
+      s = (max - min) / (max + min)
+    else
+      s = (max - min) / (2 - max - min)
+    end
+  end
+
+  return h, s, l
+end
+
+COLOR.hex2hsl = function(hex)
+  local r, g, b = COLOR.hex2rgb(hex)
+  return COLOR.rgb2hsl(r, g, b)
+end
+
 COLOR.hsl2rgb = function(h, s, l)
   local t1, t2, r, g, b
 
