@@ -207,7 +207,7 @@ local autocmds = {
         { "TermOpen", "*", "setlocal listchars= nonumber norelativenumber" },
         { "TermOpen", "*", [[lua vim.opt_local.buflisted = false]] }
     },
-    save_shada = { { "VimLeave", "*", "wshada!" }, { "CursorHold", "*", [[rshada|wshada]] } },
+    -- save_shada = { { "VimLeave", "*", "wshada!" }, { "CursorHold", "*", [[rshada|wshada]] } },
     wins = { { "BufEnter", "NvimTree", [[setlocal cursorline]] } },
     clean_trailing_spaces = { { "BufWritePre", "*", [[silent! lua require("utils").preserve('%s/\\s\\+$//ge')]] } },
     attatch_colorizer = { { "BufEnter", "*.css,*.scss,*.js,*.html,*.tsx", "ColorizerAttachToBuffer<CR>" } },

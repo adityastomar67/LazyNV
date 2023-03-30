@@ -135,7 +135,7 @@ end
 
 -- Setting the colorscheme
 require("utils").set_colorscheme()
-vim.cmd [[colorscheme highlights]]
+-- vim.cmd [[colorscheme telescope]]
 
 -- Data for limelight_conceal
 if require("utils").has("limelight") then
