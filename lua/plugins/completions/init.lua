@@ -103,6 +103,59 @@ return {
         -- local neogen = require "neogen"
         local icons = require("utils.icons").icons
 
+        local cmp_ui = require("config.user").plugin_configs.cmp
+        local cmp_style = cmp_ui.style
+
+        local field_arrangement = {
+            atom = { "kind", "abbr", "menu" },
+            atom_colored = { "kind", "abbr", "menu" },
+        }
+
+        local formatting_style = {
+            -- default fields order i.e completion word + item.kind + item.kind icons
+            fields = field_arrangement[cmp_style] or { "abbr", "kind", "menu" },
+            format = function(entry, item)
+                local icons = icons.kind
+                local icon
+                icon = (cmp_ui.icons and icons[item.kind]) or ""
+
+                if cmp_style == "atom" or cmp_style == "atom_colored" then
+                    icon = " " .. icon .. " "
+                    item.menu = cmp_ui.lspkind_text and "   (" .. item.kind .. ")" or ""
+                    item.kind = icon
+                else
+                    icon = cmp_ui.lspkind_text and (" " .. icon .. " ") or icon
+                    item.kind = string.format("%s %s", icon, cmp_ui.lspkind_text and item.kind or "")
+                end
+                if item.kind == "Copilot" or entry.source.name == "copilot" then
+                    item.menu = cmp_ui.lspkind_text and "   (Copilot)" or ""
+                    item.kind = cmp_ui.icons and "  "
+                end
+                if entry.source.name == "cmp_tabnine" or item.kind == "cmp_tabnine" then
+                    item.menu = cmp_ui.lspkind_text and "   (Tabnine)" or ""
+                    item.kind = cmp_ui.icons and "  "
+                end
+                if entry.source.name == "luasnip" or item.kind == "luasnip" then
+                    item.menu = cmp_ui.lspkind_text and "   (Snippet)" or ""
+                    item.kind = cmp_ui.icons and "  "
+                end
+
+                return item
+            end,
+        }
+        local function border(hl_name)
+            return {
+                { "╭", hl_name },
+                { "─", hl_name },
+                { "╮", hl_name },
+                { "│", hl_name },
+                { "╯", hl_name },
+                { "─", hl_name },
+                { "╰", hl_name },
+                { "│", hl_name },
+            }
+        end
+
         local has_words_before = function()
             local line, col = unpack(vim.api.nvim_win_get_cursor(0))
             return col ~= 0 and
@@ -182,35 +235,43 @@ return {
                 { name = "buffer",           group_index = 2 },
                 { name = "neosnippet" },
             },
-            formatting = {
-                fields = { "kind", "abbr", "menu" },
-                format = require("utils.icons").cmp_format {
-                    with_text = false,
-                    menu = {
-                        nvim_lsp         = "[LSP]",
-                        luasnip          = "[LuaSnip]",
-                        buffer           = "[Buffer]",
-                        nvim_lua         = "[Lua]",
-                        ultisnips        = "[UltiSnips]",
-                        vsnip            = "[vSnip]",
-                        treesitter       = "[treesitter]",
-                        look             = "[Look]",
-                        copilot          = "[Copilot]",
-                        path             = "[Path]",
-                        spell            = "[Spell]",
-                        calc             = "[Calc]",
-                        emoji            = "[Emoji]",
-                        neorg            = "[Neorg]",
-                        cmp_openai_codex = "[Codex]",
-                        cmp_tabnine      = "[TabNine]",
-                        dynamic          = "[Dynamic]",
-                    },
-                },
-            },
+            -- formatting = {
+            --     fields = { "kind", "abbr", "menu" },
+            --     format = require("utils.icons").cmp_format {
+            --         with_text = false,
+            --         menu = {
+            --             nvim_lsp         = "[LSP]",
+            --             luasnip          = "[LuaSnip]",
+            --             buffer           = "[Buffer]",
+            --             nvim_lua         = "[Lua]",
+            --             ultisnips        = "[UltiSnips]",
+            --             vsnip            = "[vSnip]",
+            --             treesitter       = "[treesitter]",
+            --             look             = "[Look]",
+            --             copilot          = "[Copilot]",
+            --             path             = "[Path]",
+            --             spell            = "[Spell]",
+            --             calc             = "[Calc]",
+            --             emoji            = "[Emoji]",
+            --             neorg            = "[Neorg]",
+            --             cmp_openai_codex = "[Codex]",
+            --             cmp_tabnine      = "[TabNine]",
+            --             dynamic          = "[Dynamic]",
+            --         },
+            --     },
+            -- },
+            formatting = formatting_style,
             confirm_opts = { behavior = cmp.ConfirmBehavior.Replace, select = false },
             window = {
-                documentation = cmp.config.window.bordered(),
-                completion    = cmp.config.window.bordered(),
+                completion = {
+                    side_padding = (cmp_style ~= "atom" and cmp_style ~= "atom_colored") and 1 or 0,
+                    winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel",
+                    scrollbar = false,
+                },
+                documentation = {
+                    border = border "CmpDocBorder",
+                    winhighlight = "Normal:CmpDoc",
+                },
             },
             experimental = { ghost_text = false },
         }
