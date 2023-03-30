@@ -135,14 +135,3 @@ end
 
 -- Setting the colorscheme
 require("utils").set_colorscheme()
-vim.cmd [[colorscheme telescope]]
-vim.cmd [[colorscheme cmp]]
-
--- Data for limelight_conceal
-if require("utils").has("limelight") then
-    vim.cmd [[let g:limelight_conceal_ctermfg = 'gray']]
-    vim.cmd [[let g:limelight_conceal_ctermfg = 240]]
-    vim.cmd [[let g:limelight_conceal_guifg = 'DarkGray']]
-    vim.cmd [[let g:limelight_conceal_guifg = '#777777']]
-    vim.cmd [[let g:limelight_default_coefficient = 0.9]]
-end

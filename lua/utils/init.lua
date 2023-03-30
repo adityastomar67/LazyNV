@@ -24,6 +24,7 @@ function Utils.set_colorscheme()
     if not ok then
         vim.notify("Colorscheme " .. colorscheme .. " not found!\n Setting LazyNV as default colorscheme.")
         CMD [[colorscheme LazyNV]]
+        CMD [[colorscheme highlights]]
         return
     end
 end
