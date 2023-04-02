@@ -61,15 +61,15 @@ API.nvim_create_autocmd("BufEnter", {
 -- INFO: Produces Unexpected erorrs
 -- TODO: Need to work on future
 -- URL highlighting
--- local highlight_url = API.nvim_create_augroup("highlighturl", { clear = true })
--- API.nvim_create_autocmd({ "VimEnter", "FileType", "BufEnter", "WinEnter" }, {
---     callback = function()
---         require("utils").set_url_match()
---     end,
---     desc = "URL Highlighting",
---     group = highlight_url,
---     pattern = "*",
--- })
+local highlight_url = API.nvim_create_augroup("highlighturl", { clear = true })
+API.nvim_create_autocmd({ "VimEnter", "FileType", "BufEnter", "WinEnter" }, {
+    callback = function()
+        require("utils").set_url_match()
+    end,
+    desc = "URL Highlighting",
+    group = highlight_url,
+    pattern = "*",
+})
 
 -- Highlight the yanked text
 local highlight_group = API.nvim_create_augroup("YankHighlight", { clear = true })
