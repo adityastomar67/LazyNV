@@ -3,11 +3,13 @@ return {
     "nvim-tree/nvim-web-devicons",
     {
         "NvChad/nvim-colorizer.lua",
-        opts = {
-            user_default_options = {
-                tailwind = true,
-            },
-        },
+        config = function()
+            require('colorizer').setup({
+                user_default_options = {
+                    tailwind = true,
+                },
+            })
+        end,
     },
     {
         "dstein64/vim-startuptime",
@@ -26,12 +28,8 @@ return {
         keys = {
             { "<leader>qs", function() require("persistence").load() end,                desc = "Restore Session" },
             { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-            {
-                "<leader>qd",
-                function() require("persistence").stop() end,
-                desc =
-                "Don't Save Current Session"
-            },
+            { "<leader>qd", function() require("persistence").stop() end,                desc =
+            "Don't Save Current Session" },
         },
     },
     { "nvim-lua/plenary.nvim",     lazy = true },
