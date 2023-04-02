@@ -100,11 +100,11 @@ User.plugin_configs             = {
     },
 }
 User.ensure_installed_languages = {
-    -- "bash",
-    -- "c",
-    -- "cpp",
-    -- "help",
-    -- "html",
+    "bash",
+    "c",
+    "cpp",
+    "help",
+    "html",
     -- "javascript",
     -- "json",
     "lua",
@@ -121,7 +121,7 @@ User.ensure_installed_languages = {
     -- "regex",
 }
 User.mason_installed            = {
-    "lua-language-server", "emmet-ls", "stylua", "clangd"
+    "lua-language-server", "bash-language-server", "emmet-ls", "stylua", "clangd"
 }
 
 return User
