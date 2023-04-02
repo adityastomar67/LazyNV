@@ -103,7 +103,6 @@ User.ensure_installed_languages = {
     "bash",
     "c",
     "cpp",
-    "help",
     "html",
     -- "javascript",
     -- "json",
