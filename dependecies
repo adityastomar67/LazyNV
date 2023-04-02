@@ -1,2 +1,3 @@
 yay -S shellcheck clang
-sudo npm i -g emmet-ls bash-language-server
+sudo npm i -g emmet-ls bash-language-server typescript-language-server tailwindcss-language-server
+go install mvdan.cc/sh/v3/cmd/shfmt@latest

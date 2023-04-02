@@ -4,7 +4,9 @@ return {
     {
         "norcalli/nvim-colorizer.lua",
         event = "VeryLazy",
-        config = true,
+        config = function()
+            require'colorizer'.setup()
+        end,
     },
     {
         "dstein64/vim-startuptime",

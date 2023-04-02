@@ -169,6 +169,14 @@ require("lspconfig").lua_ls.setup {
 }
 require("lspconfig").clangd.setup(require("plugins.lsp.servers.clangd"))
 require("lspconfig").bashls.setup(require("plugins.lsp.servers.bashls"))
-require("lspconfig").shellcheck.setup({})
-
+require("lspconfig").tsserver.setup({
+    on_attach = M.on_attach,
+    filetypes = {"typescript", "typescriptreact", "typescript.jsx", "javascriptreact"},
+    cmd = {"typescript-language-server", "--stdio"}
+})
+require("lspconfig").tailwindcss.setup({
+    on_attach = M.on_attach,
+    filetypes = { "typescript", "typescriptreact", "typescript.jsx", "javascriptreact" },
+    cmd = { "tailwindcss-language-server", "--stdio" }
+})
 return M
