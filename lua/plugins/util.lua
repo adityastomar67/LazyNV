@@ -2,10 +2,25 @@ return {
     "MunifTanjim/nui.nvim",
     "nvim-tree/nvim-web-devicons",
     {
-        "norcalli/nvim-colorizer.lua",
-        event = "VeryLazy",
-        config = function()
-            require'colorizer'.setup()
+        "NvChad/nvim-colorizer.lua",
+        opts = {
+            user_default_options = {
+                tailwind = true,
+            },
+        },
+    },
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+            { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+        },
+        opts = function(_, opts)
+            -- original LazyVim kind icon formatter
+            local format_kinds = opts.formatting.format
+            opts.formatting.format = function(entry, item)
+                format_kinds(entry, item) -- add icons
+                return require("tailwindcss-colorizer-cmp").formatter(entry, item)
+            end
         end,
     },
     {
@@ -25,16 +40,21 @@ return {
         keys = {
             { "<leader>qs", function() require("persistence").load() end,                desc = "Restore Session" },
             { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-            { "<leader>qd", function() require("persistence").stop() end,                desc =  "Don't Save Current Session" },
+            {
+                "<leader>qd",
+                function() require("persistence").stop() end,
+                desc =
+                "Don't Save Current Session"
+            },
         },
     },
     { "nvim-lua/plenary.nvim",     lazy = true },
-    { "smjonas/inc-rename.nvim",   enabled = vim.g.plugin_enabled.inc_rename,       config = true },
-    { "j-hui/fidget.nvim",         enabled = vim.g.plugin_enabled.fidget, config = true },
+    { "smjonas/inc-rename.nvim",   enabled = vim.g.plugin_enabled.inc_rename,   config = true },
+    { "j-hui/fidget.nvim",         enabled = vim.g.plugin_enabled.fidget,       config = true },
     { "kg8m/vim-simple-align",     event = "VeryLazy" },
     { "tpope/vim-repeat",          event = "VeryLazy" },
-    { "sindrets/winshift.nvim",    event = "BufEnter", config = true },
-    { "s1n7ax/nvim-window-picker", event = "BufEnter", config = true },
+    { "sindrets/winshift.nvim",    event = "BufEnter",                          config = true },
+    { "s1n7ax/nvim-window-picker", event = "BufEnter",                          config = true },
     { "junegunn/limelight.vim",    event = "VeryLazy" },
-    { "tpope/vim-surround", enabled = vim.g.plugin_enabled.vim_surround, event = "BufReadPre" },
+    { "tpope/vim-surround",        enabled = vim.g.plugin_enabled.vim_surround, event = "BufReadPre" },
 }

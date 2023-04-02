@@ -210,7 +210,7 @@ local autocmds = {
     -- save_shada = { { "VimLeave", "*", "wshada!" }, { "CursorHold", "*", [[rshada|wshada]] } },
     wins = { { "BufEnter", "NvimTree", [[setlocal cursorline]] } },
     clean_trailing_spaces = { { "BufWritePre", "*", [[silent! lua require("utils").preserve('%s/\\s\\+$//ge')]] } },
-    attatch_colorizer = { { "BufEnter", "*.css,*.scss,*.js,*.html,*.tsx", "ColorizerAttachToBuffer<CR>" } },
+    attatch_colorizer = { { "BufEnter", "*.css,*.scss,*.js,*.html,*.tsx,*.jsx", "ColorizerAttachToBuffer<CR>" } },
     mkdir_before_saving = {
         { "BufWritePre", "FileWritePre", "*", "[[ silent! call mkdir(expand(\"<afile>:p:h\"), \"p\")]]" } },
     trim_extra_spaces_and_newlines = { { "BufWritePre", "*", [[lua require("utils").preserve("%s/\\s\\+$//ge")]] } },
