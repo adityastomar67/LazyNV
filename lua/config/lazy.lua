@@ -125,3 +125,9 @@ lazy.setup {
 
 -- Keymap for launching Lazy instantly
 vim.keymap.set("n", "<leader>zz", "<cmd>:Lazy<cr>", { desc = "Manage Plugins" })
+
+vim.api.nvim_buf_delete(0, { force = true }) -- close lazy window
+
+vim.defer_fn(function()
+    vim.cmd "silent! MasonInstallAll"
+end, 0)
