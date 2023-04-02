@@ -172,6 +172,6 @@ require("lspconfig").lua_ls.setup {
     },
 }
 require("lspconfig").clangd.setup(require("plugins.lsp.servers.clangd"))
-require("lspconfig").bashls.setup(require("plug.lsp.servers.bashls"))
+require("lspconfig").bashls.setup(require("plugins.lsp.servers.bashls"))
 
 return M
