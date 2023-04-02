@@ -121,7 +121,7 @@ User.ensure_installed_languages = {
     -- "regex",
 }
 User.mason_installed            = {
-    "lua-language-server", "emmet-ls", "stylua"
+    "lua-language-server", "emmet-ls", "stylua", "clangd"
 }
 
 return User

@@ -1,6 +1,9 @@
 return {
     "williamboman/mason.nvim",
     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
+    dependencies = {
+        "williamboman/mason-lspconfig.nvim"
+    },
     opts = function()
         return {
             ensure_installed = require("config.user").mason_installed, -- not an option from mason.nvim
