@@ -86,7 +86,13 @@ API.nvim_create_autocmd("FocusGained", { command = "checktime" })
 
 -- Go to last loc when opening a buffer
 API.nvim_create_autocmd("BufReadPost", {
-    command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]]
+    callback = function()
+        local mark = API.nvim_buf_get_mark(0, '"')
+        local lcount = API.nvim_buf_line_count(0)
+        if mark[1] > 0 and mark[1] <= lcount then
+            pcall(API.nvim_win_set_cursor, 0, mark)
+        end
+    end,
 })
 
 -- Auto toggle hlsearch
