@@ -1,0 +1,2 @@
+yay -S shellcheck clang
+sudo npm i -g emmet-ls bash-language-server

@@ -100,9 +100,7 @@ return {
     config = function()
         local cmp = require "cmp"
         local luasnip = require "luasnip"
-        -- local neogen = require "neogen"
         local icons = require("utils.icons").icons
-
         local cmp_ui = require("config.user").plugin_configs.cmp
         local cmp_style = cmp_ui.style
 
@@ -235,31 +233,6 @@ return {
                 { name = "buffer",           group_index = 2 },
                 { name = "neosnippet" },
             },
-            -- formatting = {
-            --     fields = { "kind", "abbr", "menu" },
-            --     format = require("utils.icons").cmp_format {
-            --         with_text = false,
-            --         menu = {
-            --             nvim_lsp         = "[LSP]",
-            --             luasnip          = "[LuaSnip]",
-            --             buffer           = "[Buffer]",
-            --             nvim_lua         = "[Lua]",
-            --             ultisnips        = "[UltiSnips]",
-            --             vsnip            = "[vSnip]",
-            --             treesitter       = "[treesitter]",
-            --             look             = "[Look]",
-            --             copilot          = "[Copilot]",
-            --             path             = "[Path]",
-            --             spell            = "[Spell]",
-            --             calc             = "[Calc]",
-            --             emoji            = "[Emoji]",
-            --             neorg            = "[Neorg]",
-            --             cmp_openai_codex = "[Codex]",
-            --             cmp_tabnine      = "[TabNine]",
-            --             dynamic          = "[Dynamic]",
-            --         },
-            --     },
-            -- },
             formatting = formatting_style,
             confirm_opts = { behavior = cmp.ConfirmBehavior.Replace, select = false },
             window = {

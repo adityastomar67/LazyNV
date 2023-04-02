@@ -142,11 +142,7 @@ M.capabilities.textDocument.completion.completionItem = {
 --         lsp.tsserver.setup({})
 --         lsp.tailwindcss.setup({})
 --         lsp.sqlls.setup({})
---         -- lsp.bashls.setup(require("plug.lsp.servers.bashls"))
 --         lsp.jsonls.setup(require("plugins.lsp.servers.jsonls"))
---         lsp.clangd.setup(require("plugins.lsp.servers.clangd"))
---         lsp.emmet_ls.setup(require("plugins.lsp.servers.emmet-ls"))
---         lsp.lua_ls.setup(require("plugins.lsp.servers.sumneko-lua"))
 
 -- TODO: concat on_attch and capabilities on emmet_ls table
 require("lspconfig").emmet_ls.setup(require("plugins.lsp.servers.emmet-ls"))

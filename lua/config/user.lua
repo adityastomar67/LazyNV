@@ -104,23 +104,22 @@ User.ensure_installed_languages = {
     "c",
     "cpp",
     "html",
-    -- "javascript",
-    -- "json",
+    "javascript",
+    "json",
     "lua",
-    -- "markdown",
-    -- "markdown_inline",
-    -- "python",
-    -- "query",
-    -- "regex",
-    -- "tsx",
-    -- "typescript",
-    -- "vim",
-    -- "yaml",
-    -- "sql",
-    -- "regex",
+    "markdown",
+    "markdown_inline",
+    "python",
+    "query",
+    "regex",
+    "tsx",
+    "typescript",
+    "vim",
+    "yaml",
+    "sql",
 }
 User.mason_installed            = {
-    "lua-language-server", "bash-language-server", "emmet-ls", "stylua", "clangd"
+    "lua-language-server", "bash-language-server", "emmet-ls", "stylua", "clangd", "tsserver", "tailwindcss"
 }
 
 return User
