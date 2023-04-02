@@ -1,30 +1,14 @@
 return {
     "williamboman/mason.nvim",
-    cmd = "Mason",
-    dependencies = {
-        {
-            "williamboman/mason-lspconfig.nvim",
-            opts = {
-                ensure_installed = {
-                    "html",
-                    "pyright",
-                    "clangd",
-                    "tsserver",
-                    -- "jdtls",
-                    "emmet_ls",
-                    "bashls",
-                    "sqlls",
-                    "lua_ls",
-                    "lua-language-server",
-                    "jsonls",
-                    "eslint",
-                    "tailwindcss",
-                }
-            }
-        } },
+    cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
+    -- dependencies = {
+    --     "williamboman/mason-lspconfig.nvim"
+    -- },
     config = function()
         local mason = require("mason")
         mason.setup({
+            ensure_installed = { "lua-language-server" },   -- not an option from mason.nvim
+            max_concurrent_installers = 5,
             ui = {
                 check_outdated_packages_on_open = true,
                 border = "none",
@@ -55,5 +39,8 @@ return {
                 }
             }
         })
+        vim.api.nvim_create_user_command("MasonInstallAll", function()
+            vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
+        end, {})
     end
 }
