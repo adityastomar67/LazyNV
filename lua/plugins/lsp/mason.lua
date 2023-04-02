@@ -2,26 +2,29 @@ return {
     "williamboman/mason.nvim",
     cmd = "Mason",
     dependencies = {
-        "williamboman/mason-lspconfig.nvim"
-    },
+        {
+            "williamboman/mason-lspconfig.nvim",
+            opts = {
+                ensure_installed = {
+                    "html",
+                    "pyright",
+                    "clangd",
+                    "tsserver",
+                    -- "jdtls",
+                    "emmet_ls",
+                    "bashls",
+                    "sqlls",
+                    "lua_ls",
+                    "lua-language-server",
+                    "jsonls",
+                    "eslint",
+                    "tailwindcss",
+                }
+            }
+        } },
     config = function()
         local mason = require("mason")
         mason.setup({
-            ensure_installed = {
-                "html",
-                "pyright",
-                "clangd",
-                "tsserver",
-                -- "jdtls",
-                "emmet_ls",
-                "bashls",
-                "sqlls",
-                "lua_ls",
-                "lua-language-server",
-                "jsonls",
-                "eslint",
-                "tailwindcss",
-            },
             ui = {
                 check_outdated_packages_on_open = true,
                 border = "none",
