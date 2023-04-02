@@ -90,13 +90,13 @@ User.plugins                    = {
     persistence      = false,
     vim_startuptime  = false,
 }
-User.plugin_configs = {
+User.plugin_configs             = {
     cmp = {
         icons = true,
         lspkind_text = true,
-        style = "atom_colored",           -- default/flat_light/flat_dark/atom/atom_colored
-        border_color = "grey_fg",         -- only applicable for "default" style
-        selected_item_bg = "colored",     -- colored / simple
+        style = "atom_colored",       -- default/flat_light/flat_dark/atom/atom_colored
+        border_color = "grey_fg",     -- only applicable for "default" style
+        selected_item_bg = "colored", -- colored / simple
     },
 }
 User.ensure_installed_languages = {
@@ -119,6 +119,9 @@ User.ensure_installed_languages = {
     -- "yaml",
     -- "sql",
     -- "regex",
+}
+User.mason_installed            = {
+    "lua-language-server", "emmet-ls", "stylua"
 }
 
 return User

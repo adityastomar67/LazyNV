@@ -33,6 +33,20 @@ M.capabilities.textDocument.completion.completionItem = {
     },
 }
 
+-- lsp.html.setup({})
+--         -- lsp.jdtls.setup({})
+--         lsp.eslint.setup({})
+--         lsp.pyright.setup({})
+--         lsp.tsserver.setup({})
+--         lsp.tailwindcss.setup({})
+--         lsp.sqlls.setup({})
+--         -- lsp.bashls.setup(require("plug.lsp.servers.bashls"))
+--         lsp.jsonls.setup(require("plugins.lsp.servers.jsonls"))
+--         lsp.clangd.setup(require("plugins.lsp.servers.clangd"))
+--         lsp.emmet_ls.setup(require("plugins.lsp.servers.emmet-ls"))
+--         lsp.lua_ls.setup(require("plugins.lsp.servers.sumneko-lua"))
+
+require("lspconfig").emmet_ls.setup(require("plugins.lsp.servers.emmet-ls"))
 require("lspconfig").lua_ls.setup {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
@@ -46,7 +60,6 @@ require("lspconfig").lua_ls.setup {
                 library = {
                     [vim.fn.expand "$VIMRUNTIME/lua"] = true,
                     [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-                    [vim.fn.stdpath "data" .. "/lazy/extensions/nvchad_types"] = true,
                     [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
                 },
                 maxPreload = 100000,
