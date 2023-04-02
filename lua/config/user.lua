@@ -119,7 +119,7 @@ User.ensure_installed_languages = {
     "sql",
 }
 User.mason_installed            = {
-    "lua-language-server", "bash-language-server", "emmet-ls", "stylua", "clangd", "tsserver", "tailwindcss"
+    "lua-language-server", "bash-language-server","shellcheck", "emmet-ls", "stylua", "clangd", "typescript-language-server", "tailwindcss-language-server"
 }
 
 return User
