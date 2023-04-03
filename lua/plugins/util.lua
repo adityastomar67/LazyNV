@@ -36,7 +36,7 @@ return {
     { "nvim-lua/plenary.nvim",     lazy = true },
     { "smjonas/inc-rename.nvim",   enabled = vim.g.plugin_enabled.inc_rename,   config = true },
     { "j-hui/fidget.nvim",         enabled = vim.g.plugin_enabled.fidget,       config = true },
-    { "kg8m/vim-simple-align",     event = "VeryLazy",                          config = true },
+    { "kg8m/vim-simple-align",     event = "VeryLazy" },
     { "tpope/vim-repeat",          event = "VeryLazy" },
     { "sindrets/winshift.nvim",    event = "BufEnter",                          config = true },
     { "s1n7ax/nvim-window-picker", event = "BufEnter",                          config = true },
