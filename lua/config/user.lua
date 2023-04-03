@@ -57,7 +57,7 @@ User.plugins                    = {
     cmp_copilot      = false,
     cmp_dynamic      = true,
     cmp_tabnine      = true,
-    inc_rename       = false,
+    inc_rename       = true,
     telescope        = true,
     project          = false,
     hydra            = false,
@@ -118,8 +118,10 @@ User.ensure_installed_languages = {
     "yaml",
     "sql",
 }
-User.mason_installed            = {
-    "lua-language-server", "bash-language-server","shellcheck", "emmet-ls", "stylua", "clangd", "typescript-language-server", "tailwindcss-language-server"
+User.mason_installed = {
+    "lua-language-server", "bash-language-server","shellcheck", 
+    "emmet-ls", "stylua", "clangd", "typescript-language-server", 
+    "tailwindcss-language-server", "pyright", "black"
 }
 
 return User
