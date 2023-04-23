@@ -61,12 +61,12 @@ API.nvim_create_autocmd("BufEnter", {
 -- TODO: Make it for Neo-tree
 -- Closes neovim automatically when nvim-tree is the last window in the view.
 API.nvim_create_autocmd('BufEnter', {
-    group = api.nvim_create_augroup('AutoCloseNeoTree', { clear = true }),
+    group = API.nvim_create_augroup('AutoCloseNeoTree', { clear = true }),
     nested = true,
     callback = function()
       if
-        #api.nvim_list_wins() == 1
-        and api.nvim_buf_get_name(0):match('NeoTree_') ~= nil
+        #API.nvim_list_wins() == 1
+        and API.nvim_buf_get_name(0):match('NeoTree_') ~= nil
       then
         cmd.quit()
       end
