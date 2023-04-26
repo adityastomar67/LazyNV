@@ -3,6 +3,7 @@ local User                      = {}
 User.completion                 = true
 User.transparency               = true
 User.diagnostic                 = true
+User.highlighturl_enabled       = true
 User.colorscheme                = "onedark"
 User.openai_api_path            = vim.env.HOME .. "/.config/openai-codex/env"
 User.plugins                    = {

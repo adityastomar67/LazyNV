@@ -77,7 +77,7 @@ API.nvim_create_autocmd('BufEnter', {
 -- INFO: Produces Unexpected erorrs
 -- TODO: Need to work on future
 -- URL highlighting
-local highlight_url = API.nvim_create_augroup("highlighturl", { clear = true })
+local highlight_url = API.nvim_create_augroup("HighlightURL", { clear = true })
 API.nvim_create_autocmd({ "VimEnter", "FileType", "BufEnter", "WinEnter" }, {
     callback = function()
         require("utils").set_url_match()

@@ -58,7 +58,7 @@ local styles = {
         TelescopeBorder = { fg = colors.darker_black, bg = colors.darker_black },
         TelescopePreviewBorder = { fg = colors.darker_black, bg = colors.darker_black },
         TelescopeResultsBorder = { fg = colors.darker_black, bg = colors.darker_black },
-        TelescopePromptBorder = { fg = colors.black2, bg = colors.black2 },
+        TelescopePromptBorder  = { fg = colors.black2, bg = colors.black2 },
         TelescopePromptNormal = { fg = colors.white, bg = colors.black2 },
         TelescopeResultsTitle = { fg = colors.darker_black, bg = colors.darker_black },
         TelescopePromptPrefix = { fg = colors.red, bg = colors.black2 },

@@ -1,4 +1,5 @@
-return { {
+return { 
+    {
     "ggandor/flit.nvim",
     enabled = vim.g.plugin_enabled.flit,
     event = "VeryLazy",
@@ -10,7 +11,7 @@ return { {
         return ret
     end,
     opts = { labeled_modes = "nx" },
-},
+    },
     {
         "ggandor/leap.nvim",
         enabled = vim.g.plugin_enabled.leap,
@@ -29,4 +30,5 @@ return { {
             vim.keymap.del({ "x", "o" }, "x")
             vim.keymap.del({ "x", "o" }, "X")
         end,
-    } }
+    } 
+}

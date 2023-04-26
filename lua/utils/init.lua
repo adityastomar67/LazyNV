@@ -81,7 +81,7 @@ function Utils.set_url_match()
         if match.group == "HighlightURL" then vim.fn.matchdelete(match.id) end
     end
 
-    if vim.g.highlighturl_enabled then vim.fn.matchadd("HighlightURL", url_matcher, 15) end
+    if USER.highlighturl_enabled then vim.fn.matchadd("HighlightURL", url_matcher, 15) end
 end
 
 -- For fetching the Openai API key from local storage
