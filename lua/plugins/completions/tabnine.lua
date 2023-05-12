@@ -1,7 +1,7 @@
 return {
     "tzachar/cmp-tabnine",
     enabled = vim.g.plugin_enabled.cmp_tabnine,
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     build = "./install.sh",
     opts = {
         max_lines                = 1000,
