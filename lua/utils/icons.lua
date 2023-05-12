@@ -234,6 +234,7 @@ Icons.icons = {
         Plus = "",
         Project = "",
         Search = "  ",
+        Select = "ﰲ ",
         SignIn = "",
         SignOut = "",
         Tab = "",

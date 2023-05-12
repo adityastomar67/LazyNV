@@ -130,7 +130,7 @@ return {
                     "--smart-case",
                 },
                 prompt_prefix          = require("utils.icons").icons.ui.Search,
-                selection_caret        = "  ",
+                selection_caret        = require("utils.icons").icons.ui.Select,
                 entry_prefix           = "  ",
                 initial_mode           = "insert",
                 selection_strategy     = "reset",

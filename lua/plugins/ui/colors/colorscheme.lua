@@ -49,6 +49,18 @@ return {
             require("edge").setup()
         end,
     },
+    { 
+        "Alexis12119/nightly.nvim",
+        config = function()
+            require("nightly").setup({
+                transparent = true,
+                highlights = {
+                    -- add or override highlights
+                    -- Normal = { bg = "#000000" }
+                },
+            })
+        end,    
+    },
     {
         "navarasu/onedark.nvim",
         enabled = vim.g.plugin_enabled.colorscheme.onedark,
